@@ -1,0 +1,43 @@
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Tema değiştir">
+    <span class="theme-toggle-track" aria-hidden="true">
+        <span class="theme-toggle-thumb"></span>
+    </span>
+    <span id="theme-toggle-label" class="theme-toggle-label" aria-hidden="true">🌙</span>
+</button>
+<script>
+    (function () {
+        var button = document.getElementById("theme-toggle");
+        var buttonLabel = document.getElementById("theme-toggle-label");
+        if (!button) {
+            return;
+        }
+
+        function activeTheme() {
+            return document.documentElement.getAttribute("data-theme") || "light";
+        }
+
+        function apply(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            button.setAttribute(
+                "aria-label",
+                theme === "dark" ? "Açık temaya geç" : "Karanlık temaya geç"
+            );
+            if (buttonLabel) {
+                buttonLabel.textContent = theme === "dark" ? "☀️" : "🌙";
+            }
+        }
+
+        button.addEventListener("click", function () {
+            apply(activeTheme() === "dark" ? "light" : "dark");
+        });
+
+        var authLinks = document.querySelector(".topbar .auth-links");
+        if (authLinks) {
+            authLinks.appendChild(button);
+            button.classList.add("theme-toggle--in-header");
+        }
+
+        apply(activeTheme());
+    })();
+</script>

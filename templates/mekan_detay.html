@@ -1,0 +1,803 @@
+<!doctype html>
+{% load l10n static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ mekan.isim }} - Lezzet Durakları</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body {
+            margin: 0;
+            background: #f5f7fa;
+            color: #17202a;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            overflow-x: hidden;
+        }
+        img, iframe { max-width: 100%; }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            min-height: 66px;
+            padding: 10px 18px;
+            border-bottom: 1px solid #e5e7eb;
+            background: rgba(255, 255, 255, .96);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, .08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: inherit;
+            text-decoration: none;
+            font-weight: 900;
+            min-width: 0;
+        }
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 1px solid #e5e7eb;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+        .page {
+            width: min(1180px, calc(100% - 28px));
+            margin: 16px auto 24px;
+        }
+        .btn,
+        button.btn {
+            min-height: 42px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+            color: #1f2937;
+            padding: 0 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            font-weight: 900;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            border-color: #ea580c;
+            background: linear-gradient(135deg, #ff8f00, #ff6d00);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(255, 109, 0, .22);
+        }
+        .btn-dark {
+            border-color: #111827;
+            background: #111827;
+            color: #fff;
+        }
+        .btn-danger {
+            border-color: #b91c1c;
+            background: #dc2626;
+            color: #fff;
+        }
+        .panel {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, .08);
+            overflow: hidden;
+        }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .hero-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+            min-height: 340px;
+        }
+        .crumb {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .chip {
+            min-height: 30px;
+            border-radius: 999px;
+            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.02;
+            font-weight: 900;
+            letter-spacing: 0;
+            color: #111827;
+            overflow-wrap: anywhere;
+        }
+        .muted {
+            color: #6b7280;
+        }
+        .lead {
+            margin: 10px 0 0;
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.65;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .hero-media {
+            position: relative;
+            min-height: 340px;
+            background: #111827;
+        }
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            min-height: 340px;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-placeholder {
+            min-height: 340px;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #111827, #ff8f00);
+            color: #fff;
+            font-size: 56px;
+        }
+        .rating-card {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            right: 14px;
+            border: 1px solid rgba(255,255,255,.36);
+            border-radius: 10px;
+            background: rgba(17, 24, 39, .78);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+        }
+        .rating-card strong {
+            display: block;
+            font-size: 28px;
+            line-height: 1;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .stat {
+            padding: 14px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .stat span {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .stat strong {
+            color: #111827;
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.15;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(330px, .78fr);
+            gap: 14px;
+            align-items: start;
+        }
+        .section {
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .section h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+            color: #111827;
+        }
+        .info-list {
+            display: grid;
+            gap: 10px;
+        }
+        .info-row {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            background: #f8fafc;
+            min-width: 0;
+        }
+        .info-row-call {
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+        }
+        .info-row i {
+            color: #ea580c;
+            font-size: 20px;
+        }
+        .info-row strong {
+            display: block;
+            color: #111827;
+            margin-bottom: 3px;
+        }
+        .info-row span,
+        .info-row a {
+            color: #4b5563;
+            text-decoration: none;
+        }
+        .call-btn {
+            min-width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid #ea580c;
+            background: linear-gradient(135deg, #ff8f00, #ff6d00);
+            color: #fff !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 8px 18px rgba(255, 109, 0, .18);
+        }
+        .call-btn i {
+            color: inherit;
+            font-size: 18px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .gallery a {
+            display: block;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+        .gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: transform .18s ease;
+        }
+        .gallery a:hover img {
+            transform: scale(1.04);
+        }
+        .map-frame {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            display: block;
+        }
+        .review-form {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 14px;
+            background: #f8fafc;
+            margin-bottom: 14px;
+        }
+        .review-form select,
+        .review-form textarea {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: #fff;
+            color: #17202a;
+            padding: 10px;
+        }
+        .review-form label {
+            font-weight: 900;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+        .reviews {
+            display: grid;
+            gap: 10px;
+        }
+        .review {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fff;
+        }
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .review strong {
+            color: #111827;
+        }
+        .review p {
+            margin: 8px 0 0;
+            color: #4b5563;
+            line-height: 1.55;
+        }
+        .empty {
+            border: 1px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 18px;
+            color: #6b7280;
+            background: #f8fafc;
+        }
+        [data-theme="dark"] body {
+            background: #0f1115;
+            color: #e5e7eb;
+        }
+        [data-theme="dark"] .topbar,
+        [data-theme="dark"] .panel,
+        [data-theme="dark"] .review {
+            background: #171b23 !important;
+            border-color: #2a2f3a !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .chip,
+        [data-theme="dark"] .stat,
+        [data-theme="dark"] .info-row,
+        [data-theme="dark"] .review-form,
+        [data-theme="dark"] .empty,
+        [data-theme="dark"] .gallery a {
+            background: #11151d !important;
+            border-color: #2a2f3a !important;
+            color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .hero h1,
+        [data-theme="dark"] .section h2,
+        [data-theme="dark"] .stat strong,
+        [data-theme="dark"] .info-row strong,
+        [data-theme="dark"] .review strong {
+            color: #f3f4f6 !important;
+        }
+        [data-theme="dark"] .lead,
+        [data-theme="dark"] .muted,
+        [data-theme="dark"] .info-row span,
+        [data-theme="dark"] .info-row a,
+        [data-theme="dark"] .review p,
+        [data-theme="dark"] .stat span {
+            color: #aeb7c5 !important;
+        }
+        [data-theme="dark"] .btn {
+            background: #11151d;
+            border-color: #2a2f3a;
+            color: #e5e7eb;
+        }
+        [data-theme="dark"] .btn-primary {
+            background: linear-gradient(135deg, #ff8f00, #ff6d00);
+            border-color: #ea580c;
+            color: #fff;
+        }
+        [data-theme="dark"] .review-form select,
+        [data-theme="dark"] .review-form textarea {
+            background: #171b23;
+            border-color: #2a2f3a;
+            color: #e5e7eb;
+        }
+        @media (max-width: 980px) {
+            .hero,
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 12px;
+            }
+            .nav-actions,
+            .hero-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+            .nav-actions .btn,
+            .hero-actions .btn,
+            .hero-actions form {
+                flex: 1 1 100%;
+            }
+            .hero-actions form button {
+                width: 100%;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            .rating-card {
+                position: static;
+                border-radius: 0;
+                background: #111827;
+            }
+            .page {
+                width: min(100% - 20px, 1180px);
+                margin-top: 10px;
+            }
+            .hero-info,
+            .section {
+                padding: 14px;
+            }
+            .hero h1 {
+                font-size: 30px;
+                line-height: 1.08;
+            }
+            .hero-media,
+            .hero-media img,
+            .hero-placeholder {
+                min-height: 240px;
+            }
+            .stats {
+                gap: 8px;
+            }
+            .info-row {
+                grid-template-columns: 1fr;
+            }
+            .info-row-call {
+                grid-template-columns: 1fr auto;
+            }
+            .info-row-call > i {
+                display: none;
+            }
+            .section-head,
+            .review-top,
+            .rating-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-head .btn,
+            .map-frame {
+                width: 100%;
+            }
+            .map-frame {
+                height: 260px;
+            }
+            .review-form button {
+                width: 100%;
+            }
+        }
+        @media (max-width: 380px) {
+            .brand-logo {
+                width: 42px;
+                height: 42px;
+            }
+            .brand span {
+                font-size: 14px;
+            }
+            .btn,
+            button.btn {
+                width: 100%;
+                min-height: 40px;
+            }
+            .hero h1 {
+                font-size: 26px;
+            }
+            .stat {
+                min-height: 84px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+        <span>Lezzet Durakları</span>
+    </a>
+    <div class="nav-actions">
+        <a class="btn" href="{% url 'home' %}"><i class="bi bi-compass"></i> Keşfet</a>
+        <a class="btn" href="{% url 'meshur-lezzetler' %}"><i class="bi bi-stars"></i> Lezzetler</a>
+        <a class="btn" href="{% url 'rotam' %}"><i class="bi bi-signpost-split"></i> Rotam</a>
+        {% if user.is_authenticated %}
+            <a class="btn" href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+        {% endif %}
+    </div>
+</header>
+
+<main class="page">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="panel section">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <section class="hero">
+        <div class="panel hero-info">
+            <div>
+                <div class="crumb">
+                    <a class="chip" href="{% url 'home' %}"><i class="bi bi-arrow-left"></i> Geri</a>
+                    <span class="chip"><i class="bi bi-tag-fill"></i> {{ mekan.kategori.isim }}</span>
+                    {% if favori_var %}
+                        <span class="chip"><i class="bi bi-heart-fill"></i> Favorilerinde</span>
+                    {% endif %}
+                </div>
+                <h1>{{ mekan.isim }}</h1>
+                <p class="lead">{{ mekan.aciklama|default:"Bu mekan için henüz açıklama girilmemiş. Konum, yorumlar ve harita bilgileriyle keşfe devam edebilirsin." }}</p>
+            </div>
+            <div class="hero-actions">
+                <a class="btn btn-primary" target="_blank" rel="noopener" href="{{ mekan.google_maps_url }}"><i class="bi bi-map-fill"></i> Haritada Aç</a>
+                {% if mekan.web_sitesi %}
+                    <a class="btn" target="_blank" rel="noopener" href="{{ mekan.web_sitesi }}"><i class="bi bi-globe2"></i> Web Sitesine Git</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'favori-toggle' mekan.id %}" style="margin:0;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            {% if favori_var %}
+                                <i class="bi bi-heartbreak"></i> Favoriden Çıkar
+                            {% else %}
+                                <i class="bi bi-heart"></i> Favoriye Ekle
+                            {% endif %}
+                        </button>
+                    </form>
+                {% else %}
+                    <a class="btn" href="{% url 'giris' %}"><i class="bi bi-heart"></i> Favoriye Ekle</a>
+                {% endif %}
+                {% if panel_yetkili %}
+                    <a class="btn" href="{% url 'mekan-duzenle' mekan.id %}"><i class="bi bi-pencil-square"></i> Düzenle</a>
+                    <a class="btn btn-danger" href="{% url 'mekan-sil' mekan.id %}"><i class="bi bi-trash"></i> Sil</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="panel hero-media">
+            {% if mekan.kapak_fotografi %}
+                <img src="{{ mekan.kapak_fotografi.url }}" alt="{{ mekan.isim }} kapak fotoğrafı">
+            {% elif fotograflar %}
+                {% for foto in fotograflar|slice:":1" %}
+                    <img src="{{ foto.image.url }}" alt="{{ mekan.isim }} fotoğrafı">
+                {% endfor %}
+            {% else %}
+                <div class="hero-placeholder"><i class="bi bi-shop"></i></div>
+            {% endif %}
+            <div class="rating-card">
+                <div>
+                    <strong>{{ mekan.ortalama_puan|default:"0"|floatformat:1 }}/5</strong>
+                    <span class="muted">{{ yorumlar|length }} yorum</span>
+                </div>
+                <div>{{ mekan.ortalama_yildiz }}</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="panel stat">
+            <span>Kategori</span>
+            <strong>{{ mekan.kategori.isim }}</strong>
+            <small class="muted">Lezzet türü</small>
+        </div>
+        <div class="panel stat">
+            <span>Telefon</span>
+            <strong>{{ mekan.telefon|default:"Yok" }}</strong>
+            <small class="muted">İletişim bilgisi</small>
+        </div>
+        <div class="panel stat">
+            <span>Eklenme</span>
+            <strong>{{ mekan.olusturulma_tarihi|date:"d.m.Y" }}</strong>
+            <small class="muted">Kayıt tarihi</small>
+        </div>
+    </section>
+
+    <section class="content-grid">
+        <div>
+            <section class="panel section">
+                <div class="section-head">
+                    <h2>Mekan Bilgileri</h2>
+                </div>
+                <div class="info-list">
+                    <div class="info-row">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <div>
+                            <strong>Adres</strong>
+                            <span>{{ mekan.adres }}</span>
+                        </div>
+                    </div>
+                    <div class="info-row info-row-call">
+                        <i class="bi bi-telephone-fill"></i>
+                        <div>
+                            <strong>Telefon</strong>
+                            <span>{{ mekan.telefon|default:"Telefon bilgisi yok" }}</span>
+                        </div>
+                        {% if mekan.telefon %}
+                            <a
+                                class="call-btn"
+                                href="tel:{{ mekan.telefon|cut:' '|cut:'('|cut:')'|cut:'-' }}"
+                                aria-label="{{ mekan.telefon }} numarasını ara"
+                                title="Ara">
+                                <i class="bi bi-telephone-outbound-fill"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="info-row">
+                        <i class="bi bi-clock-fill"></i>
+                        <div>
+                            <strong>Çalışma saatleri</strong>
+                            <span>
+                                {{ mekan.calisma_ozeti }}
+                                {% if mekan.calisma_saati_var %}
+                                    {% if mekan.bugun_acik_mi %} · Şu an açık{% else %} · Kapalı{% endif %}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="bi bi-globe"></i>
+                        <div>
+                            <strong>Web sitesi</strong>
+                            {% if mekan.web_sitesi %}
+                                <a href="{{ mekan.web_sitesi }}" target="_blank" rel="noopener">{{ mekan.web_sitesi }}</a>
+                            {% else %}
+                                <span>Web sitesi eklenmemiş</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {% if fotograflar %}
+                <section class="panel section">
+                    <div class="section-head">
+                        <h2>Fotoğraf Galerisi</h2>
+                        <span class="chip">{{ fotograflar|length }} fotoğraf</span>
+                    </div>
+                    <div class="gallery">
+                        {% for foto in fotograflar %}
+                            <a href="{{ foto.image.url }}" target="_blank" rel="noopener">
+                                <img src="{{ foto.image.url }}" alt="{{ mekan.isim }} fotoğrafı" loading="lazy">
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            <section class="panel section">
+                <div class="section-head">
+                    <h2>Yorumlar ve Puanlama</h2>
+                    <span class="chip">{{ yorumlar|length }} yorum</span>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <form method="post" class="review-form">
+                        {% csrf_token %}
+                        {{ yorum_formu.as_p }}
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-send-fill"></i> Yorumu Kaydet</button>
+                    </form>
+                {% else %}
+                    <div class="empty">Yorum yapmak için <a href="{% url 'giris' %}">giriş yap</a>.</div>
+                {% endif %}
+
+                <div class="reviews">
+                    {% for yorum in yorumlar %}
+                        <article class="review">
+                            <div class="review-top">
+                                <div>
+                                    <strong>{{ yorum.kullanici.get_full_name|default:yorum.kullanici.username }}</strong>
+                                    <div class="muted">{{ yorum.olusturulma_tarihi|date:"d.m.Y H:i" }}</div>
+                                </div>
+                                <span class="chip">{{ yorum.puan }}/5</span>
+                            </div>
+                            <p>{{ yorum.yorum }}</p>
+                        </article>
+                    {% empty %}
+                        <div class="empty">Bu mekan için henüz yorum yok. İlk yorumu sen bırakabilirsin.</div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+        <aside>
+            <section class="panel section">
+                <div class="section-head">
+                    <h2>Konum</h2>
+                    <a class="btn" target="_blank" rel="noopener" href="{{ mekan.google_maps_url }}">Yol Tarifi</a>
+                </div>
+                <iframe
+                    class="map-frame"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://maps.google.com/maps?q={{ mekan.latitude|unlocalize }},{{ mekan.longitude|unlocalize }}&z=15&output=embed">
+                </iframe>
+            </section>
+
+            <section class="panel section">
+                <div class="section-head">
+                    <h2>Hızlı Aksiyon</h2>
+                </div>
+                <div class="info-list">
+                    <a class="info-row" href="{% url 'rotam' %}?rota_olustur=1">
+                        <i class="bi bi-signpost-split-fill"></i>
+                        <div>
+                            <strong>Yeni rota oluştur</strong>
+                            <span>Benzer duraklarla keşif planı kur.</span>
+                        </div>
+                    </a>
+                    <a class="info-row" href="{% url 'home' %}?kategori={{ mekan.kategori.id }}">
+                        <i class="bi bi-grid-fill"></i>
+                        <div>
+                            <strong>Benzer mekanlar</strong>
+                            <span>{{ mekan.kategori.isim }} kategorisini keşfet.</span>
+                        </div>
+                    </a>
+                    {% if mekan.web_sitesi %}
+                        <a class="info-row" href="{{ mekan.web_sitesi }}" target="_blank" rel="noopener">
+                            <i class="bi bi-globe2"></i>
+                            <div>
+                                <strong>Web sitesine git</strong>
+                                <span>Menu, duyuru ve rezervasyon bilgilerine bak.</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a class="info-row" href="{% url 'profil' %}">
+                            <i class="bi bi-person-circle"></i>
+                            <div>
+                                <strong>Profilime git</strong>
+                                <span>Favori ve yorum geçmişini gör.</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+            </section>
+        </aside>
+    </section>
+</main>
+{% include "partials/footer.html" %}
+</body>
+</html>

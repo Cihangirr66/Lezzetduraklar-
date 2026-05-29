@@ -1,0 +1,525 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profil - Lezzet Durakları</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body {
+            margin: 0;
+            background: #f5f7fa;
+            color: #17202a;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            overflow-x: hidden;
+        }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            min-height: 66px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            background: rgba(255, 255, 255, .96);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, .08);
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            color: inherit;
+            text-decoration: none;
+            font-weight: 900;
+        }
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 1px solid #e5e7eb;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+        .btn {
+            min-height: 40px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            background: #fff;
+            color: #1f2937;
+            padding: 0 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            border-color: #ea580c;
+            background: linear-gradient(135deg, #ff8f00, #ff6d00);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(255, 109, 0, .22);
+        }
+        .page {
+            width: min(1180px, calc(100% - 28px));
+            margin: 16px auto 24px;
+        }
+        .profile-hero {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .panel {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, .08);
+            overflow: hidden;
+        }
+        .hero-card {
+            padding: 18px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+        .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #ff8f00, #3ddc84);
+            color: #111827;
+            font-size: 34px;
+            font-weight: 900;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, .16);
+        }
+        .hero-card h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+        }
+        .muted {
+            color: #6b7280;
+        }
+        .hero-meta {
+            margin: 8px 0 0;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .chip {
+            min-height: 30px;
+            border-radius: 999px;
+            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            color: #374151;
+            font-size: 13px;
+            font-weight: 800;
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+        .stats {
+            padding: 14px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .stat {
+            min-height: 118px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #f8fafc;
+        }
+        .stat strong {
+            display: block;
+            font-size: 30px;
+            line-height: 1;
+            font-weight: 900;
+        }
+        .stat span {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        .quick {
+            padding: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .quick .btn {
+            min-height: 48px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            align-items: start;
+        }
+        .section {
+            padding: 16px;
+        }
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .section h2 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 900;
+        }
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+        .item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            color: inherit;
+            text-decoration: none;
+            background: #fff;
+            min-width: 0;
+        }
+        .item:hover {
+            border-color: #fdba74;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, .1);
+            transform: translateY(-2px);
+        }
+        .item strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #111827;
+            font-size: 16px;
+        }
+        .item p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+        }
+        .score {
+            min-width: 58px;
+            height: 34px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 143, 0, .35);
+            background: rgba(255, 143, 0, .12);
+            color: #9a4b00;
+            font-weight: 900;
+            font-size: 13px;
+        }
+        .empty {
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 18px;
+            color: #6b7280;
+            background: #f8fafc;
+        }
+        [data-theme="dark"] body {
+            background: #0f1115;
+            color: #e5e7eb;
+        }
+        [data-theme="dark"] .topbar,
+        [data-theme="dark"] .panel,
+        [data-theme="dark"] .item {
+            background: #171b23 !important;
+            border-color: #2a2f3a !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .stat,
+        [data-theme="dark"] .chip,
+        [data-theme="dark"] .empty {
+            background: #11151d !important;
+            border-color: #2a2f3a !important;
+            color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .item strong {
+            color: #f3f4f6 !important;
+        }
+        [data-theme="dark"] .muted,
+        [data-theme="dark"] .item p,
+        [data-theme="dark"] .stat span {
+            color: #aeb7c5 !important;
+        }
+        [data-theme="dark"] .btn {
+            background: #1f2430;
+            border-color: #3a4252;
+            color: #e5e7eb;
+        }
+        [data-theme="dark"] .btn-primary {
+            background: linear-gradient(135deg, #ff8f00, #ff6d00);
+            border-color: #ea580c;
+            color: #fff;
+        }
+        @media (max-width: 980px) {
+            .profile-hero,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .quick {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 620px) {
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 10px 12px;
+            }
+            .nav-actions,
+            .quick,
+            .stats {
+                width: 100%;
+                grid-template-columns: 1fr;
+            }
+            .nav-actions {
+                justify-content: stretch;
+            }
+            .nav-actions .btn {
+                flex: 1 1 calc(50% - 4px);
+            }
+            .page {
+                width: min(100% - 20px, 1180px);
+                margin-top: 10px;
+            }
+            .hero-card {
+                grid-template-columns: 1fr;
+                padding: 14px;
+            }
+            .avatar {
+                width: 72px;
+                height: 72px;
+                font-size: 28px;
+            }
+            .hero-card h1 {
+                font-size: 30px;
+            }
+            .item {
+                grid-template-columns: 1fr;
+            }
+            .score {
+                width: fit-content;
+            }
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-head .btn {
+                width: 100%;
+            }
+        }
+        @media (max-width: 380px) {
+            .brand-logo {
+                width: 42px;
+                height: 42px;
+            }
+            .brand span {
+                font-size: 14px;
+            }
+            .nav-actions .btn {
+                flex-basis: 100%;
+            }
+            .hero-card h1 {
+                font-size: 26px;
+            }
+            .quick {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+        <span>Lezzet Durakları</span>
+    </a>
+    <div class="nav-actions">
+        <a class="btn" href="{% url 'home' %}"><i class="bi bi-compass"></i> Keşfet</a>
+        <a class="btn" href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+        {% if panel_yetkili %}
+            <a class="btn" href="{% url 'raporlar' %}"><i class="bi bi-bar-chart-line-fill"></i> Raporlar</a>
+        {% endif %}
+    </div>
+</header>
+
+<main class="page">
+    <section class="profile-hero">
+        <div class="panel hero-card">
+            <div class="avatar" aria-hidden="true">{{ request.user.username|first|upper }}</div>
+            <div>
+                <h1>{{ request.user.username }}</h1>
+                <p class="muted" style="margin:8px 0 0;">Lezzet keşiflerin, favorilerin ve yorumların tek yerde.</p>
+                <div class="hero-meta">
+                    <span class="chip"><i class="bi bi-envelope"></i>{{ request.user.email|default:"E-posta belirtilmedi" }}</span>
+                    <span class="chip"><i class="bi bi-calendar-check"></i>{{ request.user.date_joined|date:"d.m.Y" }}</span>
+                    {% if panel_yetkili %}
+                        <span class="chip"><i class="bi bi-shield-check"></i>Yetkili</span>
+                    {% else %}
+                        <span class="chip"><i class="bi bi-person-check"></i>Standart Kullanıcı</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="panel stats">
+            <div class="stat">
+                <span>Favori</span>
+                <strong>{{ favori_sayisi }}</strong>
+                <small class="muted">Kaydedilen mekan</small>
+            </div>
+            <div class="stat">
+                <span>Yorum</span>
+                <strong>{{ yorum_sayisi }}</strong>
+                <small class="muted">Paylaşılan deneyim</small>
+            </div>
+            <div class="stat">
+                <span>Ortalama</span>
+                <strong>{{ ortalama_puan|floatformat:1 }}</strong>
+                <small class="muted">Verdiğin puan</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel quick" aria-label="Hızlı işlemler">
+        <a class="btn btn-primary" href="{% url 'rotam' %}"><i class="bi bi-stars"></i> Rota Oluştur</a>
+        <a class="btn" href="{% url 'favoriler' %}"><i class="bi bi-heart"></i> Favorilerim</a>
+        <a class="btn" href="{% url 'home' %}?sirala=puan"><i class="bi bi-trophy"></i> En İyiler</a>
+        <a class="btn" href="{% url 'password_reset' %}"><i class="bi bi-key"></i> Şifre Yenile</a>
+    </section>
+
+    <section class="grid">
+        <div class="panel section">
+            <div class="section-head">
+                <h2>Son Favoriler</h2>
+                <a class="btn" href="{% url 'favoriler' %}">Tümü</a>
+            </div>
+            <div class="list">
+                {% for favori in son_favoriler %}
+                    <a class="item" href="{% url 'mekan-detay' favori.mekan.id %}">
+                        <div>
+                            <strong>{{ favori.mekan.isim }}</strong>
+                            <p>{{ favori.mekan.kategori.isim }} · {{ favori.mekan.adres }}</p>
+                        </div>
+                        <span class="score">{{ favori.mekan.ortalama_puan|default:"0"|floatformat:1 }}</span>
+                    </a>
+                {% empty %}
+                    <div class="empty">Henüz favori mekanın yok. Keşfet sayfasından mekanları kaydedebilirsin.</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel section">
+            <div class="section-head">
+                <h2>Yorum Geçmişi</h2>
+                <span class="chip">{{ yorum_sayisi }} yorum</span>
+            </div>
+            <div class="list">
+                {% for yorum in son_yorumlar %}
+                    <a class="item" href="{% url 'mekan-detay' yorum.mekan.id %}">
+                        <div>
+                            <strong>{{ yorum.mekan.isim }}</strong>
+                            <p>{{ yorum.yorum|truncatechars:92 }}</p>
+                        </div>
+                        <span class="score">{{ yorum.puan }}/5</span>
+                    </a>
+                {% empty %}
+                    <div class="empty">Henüz yorum yapmadın. Mekan detaylarında deneyimini paylaşabilirsin.</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel section">
+            <div class="section-head">
+                <h2>Sana Önerilenler</h2>
+                <a class="btn" href="{% url 'home' %}">Keşfet</a>
+            </div>
+            <div class="list">
+                {% for mekan in onerilen_mekanlar %}
+                    <a class="item" href="{% url 'mekan-detay' mekan.id %}">
+                        <div>
+                            <strong>{{ mekan.isim }}</strong>
+                            <p>{{ mekan.kategori.isim }} · {{ mekan.adres }}</p>
+                        </div>
+                        <span class="score">{{ mekan.ortalama|default:"0"|floatformat:1 }}</span>
+                    </a>
+                {% empty %}
+                    <div class="empty">Öneri oluşturmak için daha fazla mekan ve yorum gerekiyor.</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel section">
+            <div class="section-head">
+                <h2>Hesap Özeti</h2>
+                <span class="chip">Aktif</span>
+            </div>
+            <div class="list">
+                <div class="item">
+                    <div>
+                        <strong>Kullanıcı adı</strong>
+                        <p>{{ request.user.username }}</p>
+                    </div>
+                    <i class="bi bi-person-circle muted" style="font-size:24px;"></i>
+                </div>
+                <div class="item">
+                    <div>
+                        <strong>E-posta</strong>
+                        <p>{{ request.user.email|default:"Belirtilmedi" }}</p>
+                    </div>
+                    <i class="bi bi-envelope-check muted" style="font-size:24px;"></i>
+                </div>
+                <div class="item">
+                    <div>
+                        <strong>Son giriş</strong>
+                        <p>{{ request.user.last_login|date:"d.m.Y H:i"|default:"Bilgi yok" }}</p>
+                    </div>
+                    <i class="bi bi-clock-history muted" style="font-size:24px;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% include "partials/footer.html" %}
+</body>
+</html>

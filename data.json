@@ -1,0 +1,2858 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-05-04T10:12:40.532Z",
+    "user": 6,
+    "content_type": 4,
+    "object_id": "5",
+    "object_repr": "cihangirr",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-05-04T10:14:13.319Z",
+    "user": 6,
+    "content_type": 4,
+    "object_id": "7",
+    "object_repr": "cihangirr",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-05-25T15:20:39.939Z",
+    "user": 6,
+    "content_type": 4,
+    "object_id": "11",
+    "object_repr": "Black",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$MruwVJiZcpLRxciV3dWcpX$Y81lOZuTwITpleHqOxhhrlKLE0+ppy7Gn8BGfrPdjQE=",
+    "last_login": "2026-05-25T15:27:49.078Z",
+    "is_superuser": true,
+    "username": "cihangir",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-04T10:10:47.077Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$38CsBQlLZ21tj0FblAce7G$dxzEDt/x6RaHegCYDn0jmvc9mVpesezJLPnG68P80sY=",
+    "last_login": "2026-05-04T10:17:51.849Z",
+    "is_superuser": false,
+    "username": "cihangirr",
+    "first_name": "",
+    "last_name": "",
+    "email": "cihangirefe76@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-04T10:17:51.678Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bL3xkCmH6WvnHtV5S87A3V$I9YcVtig3xjoeDFYq7iWahY7OioxhcAtJRYOGawdps8=",
+    "last_login": "2026-05-15T07:31:48.548Z",
+    "is_superuser": false,
+    "username": "mert",
+    "first_name": "",
+    "last_name": "",
+    "email": "mertobey236@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-07T05:34:23.583Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$QCn7m0DC1dVlxDl7m3Vrbc$H/56IOzl8Q+exGTzZUYvMLJHe/9waiwrZ7VWp4Ix6D0=",
+    "last_login": "2026-05-11T10:54:41.494Z",
+    "is_superuser": false,
+    "username": "RyuzakiLawliet",
+    "first_name": "",
+    "last_name": "",
+    "email": "tandogruali43@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-11T10:54:41.315Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$ethfnLPPFsYWxUdkaLZ7rk$LlWMV1QZmIxcsyN2VwN+8UEV8cpMYj9g6gFYHdy5x+s=",
+    "last_login": "2026-05-25T15:25:03.193Z",
+    "is_superuser": false,
+    "username": "Black",
+    "first_name": "",
+    "last_name": "",
+    "email": "cihangirefebesni7@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-22T15:53:40.278Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "!lc1jESXVGlA67EB8NtbO5u3SOjFQ4mKfBIFuXLZ7",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ayse.demir",
+    "first_name": "Ayþe",
+    "last_name": "Demir",
+    "email": "ayse.demir@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.274Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 14,
+  "fields": {
+    "password": "!zE8T9dHb6b982udJt93c9mJdy3fH9hHI8whkk7Rh",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mehmet.kaya",
+    "first_name": "Mehmet",
+    "last_name": "Kaya",
+    "email": "mehmet.kaya@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.278Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 15,
+  "fields": {
+    "password": "!AkQgW1ZiGNc2dQNE81JFSa1hGoA66qEFDjUFxdzg",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "zeynep.arslan",
+    "first_name": "Zeynep",
+    "last_name": "Arslan",
+    "email": "zeynep.arslan@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.279Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 16,
+  "fields": {
+    "password": "!kFW3Y4GJXoRASZJNW2vEoEffZQoMB8bEhO2PIVII",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "emre.yildiz",
+    "first_name": "Emre",
+    "last_name": "Yýldýz",
+    "email": "emre.yildiz@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.280Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 17,
+  "fields": {
+    "password": "!g7EloiHO1UVEGjQqjtYxmlwfU1yWN3Ysw9eP6BHt",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "elif.ozkan",
+    "first_name": "Elif",
+    "last_name": "Özkan",
+    "email": "elif.ozkan@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.280Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 18,
+  "fields": {
+    "password": "!CM2Dzg4COIJJKuWjddjXRXW2cupfa3SSwlHiNp7h",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "burak.celik",
+    "first_name": "Burak",
+    "last_name": "Çelik",
+    "email": "burak.celik@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.281Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 19,
+  "fields": {
+    "password": "!a9dJGvLXmiziultU2tF9YZKHsyut1sl3Lj3jYSLc",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "mert.akar",
+    "first_name": "Mert",
+    "last_name": "Akar",
+    "email": "mert.akar@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.281Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 20,
+  "fields": {
+    "password": "!s9HYIZpzmgyYHzFxVCULeIz7eYofWKnkLXKmOvoT",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "seda.sahin",
+    "first_name": "Seda",
+    "last_name": "Þahin",
+    "email": "seda.sahin@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.282Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 21,
+  "fields": {
+    "password": "!NAF3IHLlSLMKLaRY2sc7G24vyYPhfbRAvlrBD132",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "caner.koc",
+    "first_name": "Caner",
+    "last_name": "Koç",
+    "email": "caner.koc@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.283Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 22,
+  "fields": {
+    "password": "!QDRt0vJIUi7uHkFDpl3V8BipUU7nOeFKM13tahSP",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "irem.kurt",
+    "first_name": "Ýrem",
+    "last_name": "Kurt",
+    "email": "irem.kurt@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.283Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 23,
+  "fields": {
+    "password": "!QQDKfhRvoeK5eW2Imjl70UhOTrOuWArUDMtpL2xW",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ali.erdogan",
+    "first_name": "Ali",
+    "last_name": "Erdoðan",
+    "email": "ali.erdogan@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.284Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 24,
+  "fields": {
+    "password": "!ya7fuYCRw6XUdCYHlxuwF52hSCpwLctyUbbekM3T",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "deniz.gunes",
+    "first_name": "Deniz",
+    "last_name": "Güneþ",
+    "email": "deniz.gunes@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.285Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 25,
+  "fields": {
+    "password": "!Q70ZccYvsgL55roa8uMxjiDxMLwmKbIBVo4ayTWi",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "selin.avci",
+    "first_name": "Selin",
+    "last_name": "Avcý",
+    "email": "selin.avci@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.285Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 26,
+  "fields": {
+    "password": "!qXyDV4nsmaSZKyyvEB5K6cXokXhEPimwEgC2EkSE",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "onur.tas",
+    "first_name": "Onur",
+    "last_name": "Taþ",
+    "email": "onur.tas@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.286Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 27,
+  "fields": {
+    "password": "!gVVxO59vhBFuOzNjY8dFSZKin3Vqm6I1P4568Y4P",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "gamze.aydýn",
+    "first_name": "Gamze",
+    "last_name": "Aydýn",
+    "email": "gamze.aydýn@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.286Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 28,
+  "fields": {
+    "password": "!iXKdm8fxAt9iRGGFXuTIgn4eb2SYAof52pLdNVnJ",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kerem.uzun",
+    "first_name": "Kerem",
+    "last_name": "Uzun",
+    "email": "kerem.uzun@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-23T09:53:34.287Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "06rzl0jeevea8013dixyl7g8uxk4t3j6",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQSjt:oweTVDnVef_9sDP54-aklDM3bp2nKnW-9JnzOKTWfLk",
+    "expire_date": "2026-06-05T16:28:45.413Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "16fermrzco2fu9k4fnn7s7ygd1iy7rlk",
+  "fields": {
+    "session_data": ".eJxlzM1qwzAQBOBXMXsWxl5JtqNjbyXk1N6MEWv9xKqNVCyll5B3L4FQML3OfDN32FMhnaJxa9DBZqVajUqttPw4UKMQrG-YxIkdYC50df_5Hd63tTr_bScGH7SGWF3SRqDGvpkYfFLZQnWmb4ohgxolTg8Gmm5l0bfsdh0sKOjgkM1kVhefhf2ieE21SbHsYa6fpH61ub4k67a3lz0cLJQXUEDeW07S2d733g78hIR8Fl1vLEfCk5ckhEAhbNMaLgeBw4wcZ-eHrmkFweMXHspjgA:1wR8lQ:vSu1D2y4We2QBodAw3oKQOfsogOZkTEfaVEjUQtdAdA",
+    "expire_date": "2026-06-07T13:21:08.405Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7z1tnv3kri2ake3t5iovvh3zw5d7hf68",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQS0n:jayWllfNuJyGwAmXzdoNVPe9rXeSTiFGS_gzB-bJfGw",
+    "expire_date": "2026-06-05T15:42:09.428Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ci1i24kqc3oq7ofevmw3xpneak31z6ez",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQTXc:FMtowGMq1MnQOS-kffG1Oa5ZwFom40IHWRGQq35zqP4",
+    "expire_date": "2026-06-05T17:20:08.032Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hwe1858oi8wzz7vvgj4hurfzlxw1tl4u",
+  "fields": {
+    "session_data": ".eJxljL1qwzAURl_F3NkY-0qWHY3dSsjUbsGIq79YtZGKpXQJefdiCAXT9ZzzfQ_YUiGVonFLUMFmKTuFUi40_ziQV2xrFLUQU30Ic6Gb-58_4H1dqvPfdqrhg5YQq0taaSf7zyeVNVRn-qYYMsirENOzBkX3Mqt7dpsKFiQIODBNZnFxF_aL4i01JsWyBd3sSfOyubkk69a3V3s4mCnPIIG8t4x6Zwc_eDuyExIyzcVgLEPCk--Jc46c27YzrB85jhoZaudH0Xac4PkLHchjgA:1wR8ka:fPiYJylFi60seEl8mRKoNhGUAO2mf3fHDRp2PckuuSk",
+    "expire_date": "2026-06-07T13:20:16.064Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "im1iv2cx1j8qh25i4xl1q87yyn43agpg",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQAP9lz6aB7fYBR-9-Q7PtthY1kFA4Gf_dkHDQ68xk3hB432rYW17DJDCChcsvi5yeeT6EPHi-Lyot87ZOUR2JOm1Tt0Xy63q2f4PKrcIIXIpoNllccUW8HpBRR7IuiUbGoRgmIiSSrk_aeEIfUWPMxduuJ4bPF_98N8w:1wRCzn:h4EnxWzxAVV_Jn1YMyfEABtteQbrpbvWYuQod0iPqM0",
+    "expire_date": "2026-06-07T17:52:15.125Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "io2usj1c7ih8omaxgk6n51hf0u60k9o1",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQTX6:ZrxVq23hnmfhzIwU2YqQ4yN9RgqiN5747FGfqQBLn8g",
+    "expire_date": "2026-06-05T17:19:36.109Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pb988q8e9i9uvosfw61gc962qj5uzywp",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQSz5:c0Hx9g-MnwTigjnepA-fImzx1MMyMB3ZmB-BMud6eEc",
+    "expire_date": "2026-06-05T16:44:27.907Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pe2mooi38nybuzhb5oym2lnbara04nbw",
+  "fields": {
+    "session_data": ".eJx9UcFOhDAU_BXCuUFLS1u47Xo0nvRizIY8SlkqLBjKmpgN_-6DoEGX5dTkzXRm3ryLn8K5L9OzM11qcz_xhU-Wswx0ZZoRyN-hObaBbpu-s1kwUoIZdcFTm5t6P3P_CJTgSvxNwcSqyJSWspCCZ4JJzmWkTWRoKHkueMThPi8iGhdCUqZiI7ViTHPKQIcSRbu2h7RttKksRnVJEqY8SaoanK385E2GhFLCxGGFydOP-oyvaysYuYpQIteINA0XkmJSXCVO3gs5SqLwpmAJhS2Qx2P0ZWor4Q91LaHr4WhWVr_4e3A1Xsdq787bdeA9Ww1zJ4oIwlBo14D3ak5mHGNaGqGBGIEX6GuL_x6h_DQIMkEwpySUH4Zt_3n9f_a9db3tTlBPFaor64XlA3zhCIsbbjX30zAd-2D8diFL9mYgepXoKhDb2nx50IXRdN0N5d921WEYvgFdIRzE:1wQJxK:tgDnqHsJIVYgY2uIlJd2hprULL032IblRpyNSfpYAAc",
+    "expire_date": "2026-06-05T07:06:02.087Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rupvp6pbq83qv96ig849gtf4tbxymtie",
+  "fields": {
+    "session_data": ".eJyrVirKL0mMz89LTs3OjM9MKbayMoo3sbLKzkkszsxWsoq20DHUMbOI1UFRV1ySmJ6KRXW1klNicU5iXnpmsoK-gmNRokJwZnIi2JhYHSXHvESFyNTcVBDfMFZHKSSxJCdTQV_BOzGjLFXJKtrMIra2FgDzxC-P:1wQT35:GSKNEHUdadHFfj_9NIQSQltPEx0xvISxJ3ri2Z1Fq3o",
+    "expire_date": "2026-06-05T16:48:35.331Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ryqjmj3nz0fi6cz14fcardo6q8yk4vle",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQAP9lz6aB7fYBR-9-Q7PtthY1kFA4Gf_dkHDQ68xk3hB432rYW17DJDCChcsvi5yeeT6EPHi-Lyot87ZOUR2JOm1Tt0Xy63q2f4PKrcIIXIpoNllccUW8HpBRR7IuiUbGoRgmIiSSrk_aeEIfUWPMxduuJ4bPF_98N8w:1wRD01:X5-l0dVVnBGOMvVdoqZfglT8HfJydXxLLmsq0ppN8Is",
+    "expire_date": "2026-06-07T17:52:29.516Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "szokqcnm8vjkgqwbv1kjaaafaf2kcpmk",
+  "fields": {
+    "session_data": ".eJxljLFqwzAURX_FvFkYW3qyHY3dSsjUbsGIZ0uKVRmpWEqXkH8vhlAwXc859z5gS4V0irMNXnuTlWo1VyrQ8mNBXXnDEBnKkR3CXOhm_-cPeF9Ddf7bjgw-KPhYXdJKoK6II4NPKquvzvRN0ecdyvHJQNO9LPqe7aa9AQUdHNhEc7BxF-aL4i3Vc4pl81O9J_XL5vqSjF3fXu3hYKG8gAJyzgiS1vSud2YQJ05cTNj1sxGc-MlJQkSOaJp2FnJAPkxc8Mm6oWtaJHj-AhidY3o:1wR8i6:a1UlpzW4bsxWRa59yLBe1hVJhzqTpCqJq4zaGyKHU4c",
+    "expire_date": "2026-06-07T13:17:42.976Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uiwjg2dsrukx4shxs8q0fk01zxzjy0o1",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQAP9lz6aB7fYBR-9-Q7PtthY1kFA4Gf_dkHDQ68xk3hB432rYW17DJDCChcsvi5yeeT6EPHi-Lyot87ZOUR2JOm1Tt0Xy63q2f4PKrcIIXIpoNllccUW8HpBRR7IuiUbGoRgmIiSSrk_aeEIfUWPMxduuJ4bPF_98N8w:1wRXDZ:Y8Du6bPuKBmPtQ9sZbZYJ654GHOXHlMFebMkY-7pDi4",
+    "expire_date": "2026-06-08T15:27:49.082Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xdj3dj5d6yf85vjl1yppzlwx4y60jxq0",
+  "fields": {
+    "session_data": ".eJxVjDEOgzAMAP_iuYoa4sSBsTtvQI7jFNoKJAJT1b9XSAztene6Nwy8b-OwV12HKUMHAS6_LLE8dT5EfvB8X4ws87ZOyRyJOW01_ZL1dTvbv8HIdYQOLGsbS4pCVChgCo4QyYt6tQ1hDuiRr7l425ZA1sVWSaJzgtaxNASfL9hjNzY:1wQS0u:2SxGSCkIztyQZ5FYpr1CyZdvuBXLDhL8XZcEa1Tp_eI",
+    "expire_date": "2026-06-05T15:42:16.679Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zhmkywbzofqmmleejpv2iuigtzxdmffp",
+  "fields": {
+    "session_data": ".eJxVjMsOgjAQAP9lz6aB7fYBR-9-Q7PtthY1kFA4Gf_dkHDQ68xk3hB432rYW17DJDCChcsvi5yeeT6EPHi-Lyot87ZOUR2JOm1Tt0Xy63q2f4PKrcIIXIpoNllccUW8HpBRR7IuiUbGoRgmIiSSrk_aeEIfUWPMxduuJ4bPF_98N8w:1wR8hw:qo6bcY9tff6StovmdVzFoNzOzDpQoDRE_tlPBUGDZko",
+    "expire_date": "2026-06-07T13:17:32.904Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "8d153cda032bcd655923edc11acc2176e651c1df",
+  "fields": {
+    "user": 6,
+    "created": "2026-05-07T09:04:21.214Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "c806b471bf690727369e17d073db06e20dba949a",
+  "fields": {
+    "user": 9,
+    "created": "2026-05-11T08:47:45.664Z"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 1,
+  "fields": {
+    "isim": "Restoran",
+    "ikon_slug": "restoran"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 2,
+  "fields": {
+    "isim": "Kafe",
+    "ikon_slug": "kafe"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 3,
+  "fields": {
+    "isim": "Tatlýcý",
+    "ikon_slug": "tatlici"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 4,
+  "fields": {
+    "isim": "Fýrýn",
+    "ikon_slug": "firin"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 5,
+  "fields": {
+    "isim": "Sokak Lezzeti",
+    "ikon_slug": "sokak-lezzeti"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 6,
+  "fields": {
+    "isim": "Kebap",
+    "ikon_slug": "kebap"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 7,
+  "fields": {
+    "isim": "Döner",
+    "ikon_slug": "doner"
+  }
+},
+{
+  "model": "gurmerota.kategori",
+  "pk": 8,
+  "fields": {
+    "isim": "Kahvaltý",
+    "ikon_slug": "kahvalti"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 1,
+  "fields": {
+    "isim": "Kocabaþ Konaðý",
+    "aciklama": "Tarihi konak atmosferinde Kahramanmaraþ mutfaðýný denemek isteyenler için merkezde karakterli bir restoran duraðý.",
+    "kategori": 1,
+    "adres": "Kayabaþý, Çiçekli Cd. No: 9, 46100 merkez/Kahramanmaraþ",
+    "latitude": "37.588920",
+    "longitude": "36.929890",
+    "telefon": "05330411580",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/114374kahramanmaras-kocabas-konagijpg.png",
+    "olusturulma_tarihi": "2026-04-30T08:23:01.335Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 3,
+  "fields": {
+    "isim": "YanyanacýFerit",
+    "aciklama": "Onikiþubat tarafýnda fýrýn lezzetleri ve hýzlý atýþtýrmalýklar için pratik, yerel bir durak.",
+    "kategori": 4,
+    "adres": "Kahramanmaraþ, Onikiþubat, Bahçeci Hoca Blv., 31",
+    "latitude": "37.582782",
+    "longitude": "36.868457",
+    "telefon": "532 155 63 46",
+    "web_sitesi": "",
+    "calisma_baslangic": "07:00:00",
+    "calisma_bitis": "21:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/XXXL.webp",
+    "olusturulma_tarihi": "2026-04-30T08:47:30.301Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 5,
+  "fields": {
+    "isim": "Þef Osman",
+    "aciklama": "Dulkadiroðlu merkezinde sokak lezzeti arayanlar için hýzlý servisli, doyurucu seçenekler sunan yerel iþletme.",
+    "kategori": 5,
+    "adres": "Menderes mah. Trabzon Bulvarý, 46001. Sk. No:82/1, 46100 Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.573199",
+    "longitude": "36.935109",
+    "telefon": "05333700076",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-07T05:25:52.992Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 6,
+  "fields": {
+    "isim": "Sokakbaþý Pilavcýsý",
+    "aciklama": "Necip Fazýl çevresinde pilav ve pratik sokak lezzetleriyle öðle molalarý için tercih edilebilecek bir durak.",
+    "kategori": 5,
+    "adres": "Necip Fazýl Mahallesi, Besler Sitesi Altý No: 86/A Necip Fazýl Kýsakürek, Blv., 46050 Onikiþubat/, 46100 Kahramanmaraþ Merkez/Kahramanmaraþ",
+    "latitude": "37.586977",
+    "longitude": "36.900626",
+    "telefon": "03442161020",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-07T05:30:59.389Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 7,
+  "fields": {
+    "isim": "Bab-ý Ala Künefe",
+    "aciklama": "Uzun Çarþý çevresinde künefe ve tatlý molasý vermek isteyenler için merkezi konumda yerel tatlýcý.",
+    "kategori": 3,
+    "adres": "Ýstiklal, uzun çarþý, 46000 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.592281",
+    "longitude": "36.865806",
+    "telefon": "05053784611",
+    "web_sitesi": "https://www.babialakunefe.com",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/7-bab-ala-k-nefe.webp",
+    "olusturulma_tarihi": "2026-05-07T05:33:00.789Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 8,
+  "fields": {
+    "isim": "Önder fýrýn",
+    "aciklama": "Hürriyet Mahallesi çevresinde günlük ekmek ve fýrýn ürünleri için mahalle ölçeðinde sýcak bir fýrýn.",
+    "kategori": 4,
+    "adres": "Hürriyet, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.598416",
+    "longitude": "36.889517",
+    "telefon": "532 155 63 46",
+    "web_sitesi": "",
+    "calisma_baslangic": "07:00:00",
+    "calisma_bitis": "21:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-07T05:41:27.990Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 9,
+  "fields": {
+    "isim": "46 Döner",
+    "aciklama": "Necip Fazýl bölgesinde döner ve hýzlý yemek seçenekleriyle öne çýkan, paket ve ayaküstü lezzet için uygun restoran.",
+    "kategori": 1,
+    "adres": "Necip Fazýl Mahallesi alparslan türkeþ bulvarý ikizkent sitesi altý, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.587206",
+    "longitude": "36.896014",
+    "telefon": "03442157646",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-07T08:14:34.693Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 11,
+  "fields": {
+    "isim": "Taþkonak Steakhouse",
+    "aciklama": "Et ve steakhouse deneyimi arayanlar için Onikiþubat tarafýnda daha özenli akþam yemeklerine uygun restoran.",
+    "kategori": 1,
+    "adres": "Þehit Polis, Yirmikigün Mah, 32096. Sk. No:12C, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.590531",
+    "longitude": "36.859028",
+    "telefon": "05458733884",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-11T09:07:06.530Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 13,
+  "fields": {
+    "isim": "Kalehan Restoran",
+    "aciklama": "Kale çevresindeki konumuyla þehir gezisine yemek molasý eklemek isteyenler için yerel restoran alternatifi.",
+    "kategori": 1,
+    "adres": "Þehit Evliya, 65019. Sokak no 5, 46000 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588572",
+    "longitude": "36.924753",
+    "telefon": "05333240046",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T08:43:51.154Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 14,
+  "fields": {
+    "isim": "Niþantaþý Kruvasancýsý",
+    "aciklama": "Kruvasan, kahve ve tatlý molasý için Cumhuriyet Mahallesi çevresinde yeni nesil bir tatlý duraðý.",
+    "kategori": 3,
+    "adres": "Cumhuriyet, 14021. Sk. No:20/A, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.596508",
+    "longitude": "36.851533",
+    "telefon": "05332528946",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T08:45:09.452Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 15,
+  "fields": {
+    "isim": "FAHRÝ USTA PAÇA & ÇORBA",
+    "aciklama": "Paça, çorba ve geleneksel sýcak yemek arayanlar için sabah ve öðle saatlerinde güçlü bir restoran seçeneði.",
+    "kategori": 1,
+    "adres": "Þehit Abdullah Çavuþ, 66012. Sk. Önder Sitesi No:4/E, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.581007",
+    "longitude": "36.884630",
+    "telefon": "03442153535",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T08:46:31.651Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 16,
+  "fields": {
+    "isim": "SUSAM SOKAÐI COFFEE HOUSE",
+    "aciklama": "Kampüs çevresinde kahve, sohbet ve ders arasý mola için uygun, genç ve rahat atmosferli kafe.",
+    "kategori": 2,
+    "adres": "Avþar Kampüsü, Maarif mahallesi 92007/1 Sokak, Kahramanmaraþ Sütçü Ýmam Ünv. Bayýr Sitesi no:9/BD B Blok, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.586980",
+    "longitude": "36.839651",
+    "telefon": "05442783649",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T08:49:18.409Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 17,
+  "fields": {
+    "isim": "Þef Yusuf Burger",
+    "aciklama": "Bahçeci Hoca Bulvarý çevresinde butik burger ve hýzlý yemek arayanlar için samimi bir restoran alternatifi.",
+    "kategori": 1,
+    "adres": "Boðaziçi, Bahçeci Hoca Blv. Bogaz Ýçi Konutlarý giriþi D:1/B, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.577090",
+    "longitude": "36.856847",
+    "telefon": "05394015676",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T08:50:39.208Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 18,
+  "fields": {
+    "isim": "Maraþ atom",
+    "aciklama": "Hayrullah bölgesinde kahvaltýlýk ve enerji veren hýzlý lezzetler için tercih edilebilecek yerel sokak lezzeti noktasý.",
+    "kategori": 5,
+    "adres": "Hayrullah, Azerbaycan Blv. No:78 D:17, 46000 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.575129",
+    "longitude": "36.925941",
+    "telefon": "05461959896",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-18T09:00:56.424Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 19,
+  "fields": {
+    "isim": "Turaç Ocakbaþý Kahramanmaraþ",
+    "aciklama": "Ocakbaþý, kebap ve et aðýrlýklý yemekler için Onikiþubat tarafýnda akþam buluþmalarýna uygun restoran.",
+    "kategori": 1,
+    "adres": "Orman Cad, Dumlupýnar, Sait Zarifoðlu Blv. No: 101, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.579512",
+    "longitude": "36.920693",
+    "telefon": "03442141483",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T05:22:41.140Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 21,
+  "fields": {
+    "isim": "Yenisehir",
+    "aciklama": "Dulkadiroðlu merkezinde günlük yemek ve þehir içi mola için sade, ulaþýmý kolay bir restoran seçeneði.",
+    "kategori": 1,
+    "adres": "Milli Egemenlik Caddesi, Ýsmet Paþa Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.579917",
+    "longitude": "36.927966",
+    "telefon": "0344 223 80 00",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.123Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 22,
+  "fields": {
+    "isim": "Kervan Pastahane",
+    "aciklama": "Kurtuluþ ve Þekerdere çevresinde pasta, tatlý ve dondurma molasý için bilinen pastahane duraðý.",
+    "kategori": 3,
+    "adres": "Þekerdere Bulvarý, Þehit Evliya Mahallesi, Kurtuluþ Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.586538",
+    "longitude": "36.925522",
+    "telefon": "0344 223 89 89",
+    "web_sitesi": "https://kervanlezzetgrubu.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/22-kervan-pastahane.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.125Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 23,
+  "fields": {
+    "isim": "Teras",
+    "aciklama": "Çamlýk ve Kuzey Çevre Yolu hattýnda manzaralý kafe molasý, kahve ve hafif atýþtýrmalýklar için uygun durak.",
+    "kategori": 2,
+    "adres": "Kuzey Çevre Yolu, Çamlýk Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.601529",
+    "longitude": "36.912914",
+    "telefon": "0344 249 30 00",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.127Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 24,
+  "fields": {
+    "isim": "Metin Usta Et Lokantasý",
+    "aciklama": "Bin Evler çevresinde et lokantasý çizgisinde doyurucu öðünler sunan, aile yemeklerine de uygun restoran.",
+    "kategori": 1,
+    "adres": "13015 Sokak, Bin Evler Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.594936",
+    "longitude": "36.873979",
+    "telefon": "0344 215 46 47",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.129Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 25,
+  "fields": {
+    "isim": "Baskonus Yaylasi  Kahvalti ve Et Restorani",
+    "aciklama": "Baþkonuþ Yaylasý atmosferinde kahvaltý, et yemekleri ve doða içinde uzun mola isteyenler için güçlü bir rota duraðý.",
+    "kategori": 1,
+    "adres": "Baþkonuþ Yaylasý, Avgasýr, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.566337",
+    "longitude": "36.583264",
+    "telefon": "0344 278 11 11",
+    "web_sitesi": "https://www.baskonusyaylasi.com/",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/25-baskonus-yaylasi-kahvalti-ve-et-restorani.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.131Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 26,
+  "fields": {
+    "isim": "Baraka Kafe",
+    "aciklama": "Tekerek çevresinde kahve, çay ve hafif atýþtýrmalýklarla günlük buluþmalar için rahat bir kafe alternatifi.",
+    "kategori": 2,
+    "adres": "Turgut Özal Bulvarý, Tekerek Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.584356",
+    "longitude": "36.864933",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.133Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 29,
+  "fields": {
+    "isim": "Kasap Restaurant",
+    "aciklama": "Þeyh Adil Caddesi çevresinde et aðýrlýklý yemekler ve kasap restoran tarzý lezzetler için yerel seçenek.",
+    "kategori": 1,
+    "adres": "Þeyh Adil Caddesi, Ýsa Divanlý Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.581286",
+    "longitude": "36.929694",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.138Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 30,
+  "fields": {
+    "isim": "Mado",
+    "aciklama": "Dondurma, tatlý ve Maraþ lezzetleri denemek isteyenler için þehir giriþ hattýnda bilinen marka duraðý.",
+    "kategori": 3,
+    "adres": "Kahramanmaraþ-Gaziantep Yolu, Erkenez, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.541694",
+    "longitude": "36.973552",
+    "telefon": "0344 236 06 11",
+    "web_sitesi": "https://mado.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/30-mado.png",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.140Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 31,
+  "fields": {
+    "isim": "Kahve Dünyasý",
+    "aciklama": "Haydar Aliyev Bulvarý çevresinde kahve, çikolata ve tatlý molasý için zincir kafe konforu sunar.",
+    "kategori": 2,
+    "adres": "Haydar Aliyev Bulvarý, Þazi Bey Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.570875",
+    "longitude": "36.923326",
+    "telefon": "0344 235 40 32",
+    "web_sitesi": "https://www.kahvedunyasi.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.141Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 32,
+  "fields": {
+    "isim": "Vintage",
+    "aciklama": "Ýsmet Paþa Mahallesi çevresinde kahve ve sohbet için sakin, þehir merkezine yakýn bir kafe duraðý.",
+    "kategori": 2,
+    "adres": "36009. Sokak, Ýsmet Paþa Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.576532",
+    "longitude": "36.929678",
+    "telefon": "0530 786 88 13",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.143Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 33,
+  "fields": {
+    "isim": "Balkon",
+    "aciklama": "Yeni Þehir Mahallesi'nde kahve, tatlý ve arkadaþ buluþmalarý için merkezi konumlu kafe seçeneði.",
+    "kategori": 2,
+    "adres": "Dayýzade Mehmet Efendi Caddesi, Yeni Þehir Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.574245",
+    "longitude": "36.931188",
+    "telefon": "0507 170 32 32",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.147Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 34,
+  "fields": {
+    "isim": "Kalyon",
+    "aciklama": "Yeni Þehir çevresinde çay, kahve ve kýsa mola için kullanýlabilecek sade ve ulaþýmý kolay kafe.",
+    "kategori": 2,
+    "adres": "74018. Sokak, Yeni Þehir Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.574754",
+    "longitude": "36.930942",
+    "telefon": "0344 224 01 11",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.149Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 35,
+  "fields": {
+    "isim": "DOCA Kahve",
+    "aciklama": "Barbaros Caddesi üzerinde nitelikli kahve ve modern kafe atmosferi arayanlar için Onikiþubat duraðý.",
+    "kategori": 2,
+    "adres": "Barbaros Caddesi Onikiþubat Kahramanmaraþ",
+    "latitude": "37.585798",
+    "longitude": "36.869534",
+    "telefon": "0532 604 36 22",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.151Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 36,
+  "fields": {
+    "isim": "Gönül Kahvesi",
+    "aciklama": "Bin Evler bölgesinde Türk kahvesi, tatlý ve uzun sohbetler için sýcak atmosferli kafe alternatifi.",
+    "kategori": 2,
+    "adres": "Bediüzzaman Bulvarý, Bin Evler Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.591641",
+    "longitude": "36.868917",
+    "telefon": "0344 215 00 06",
+    "web_sitesi": "https://gonulkahvesi.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/36-g-n-l-kahvesi.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.152Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 37,
+  "fields": {
+    "isim": "Starbucks",
+    "aciklama": "Yirmiikigün Mahallesi çevresinde kahve zinciri standardýnda içecek, çalýþma ve kýsa mola için uygun kafe.",
+    "kategori": 2,
+    "adres": "91028 Sokak, Yirmiikigün Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.592708",
+    "longitude": "36.864188",
+    "telefon": "",
+    "web_sitesi": "https://www.starbucks.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.155Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 38,
+  "fields": {
+    "isim": "Fesleðen",
+    "aciklama": "Þehit Abdullah Çavuþ Mahallesi'nde kahve ve günlük buluþmalar için mahalle ölçeðinde rahat bir kafe.",
+    "kategori": 2,
+    "adres": "66037, Þehit Abdullah Çavuþ Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588316",
+    "longitude": "36.879187",
+    "telefon": "0344 215 37 38",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.157Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 39,
+  "fields": {
+    "isim": "Eylül Kafe",
+    "aciklama": "Yeni Þehir Mahallesi çevresinde çay, kahve ve tatlý molasý için merkezi konumlu kafe duraðý.",
+    "kategori": 2,
+    "adres": "74014. Sokak, Yeni Þehir Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.574442",
+    "longitude": "36.930206",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.158Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 40,
+  "fields": {
+    "isim": "Domino's",
+    "aciklama": "Vadi Mahallesi çevresinde pizza, paket servis ve hýzlý yemek arayanlar için pratik bir sokak lezzeti seçeneði.",
+    "kategori": 5,
+    "adres": "Sümbüllü Caddesi, Vadi Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.585283",
+    "longitude": "36.869704",
+    "telefon": "0344 221 60 60",
+    "web_sitesi": "https://www.dominos.com.tr/",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.160Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 42,
+  "fields": {
+    "isim": "Hurda Kafe",
+    "aciklama": "Þehit Abdullah Çavuþ çevresinde kahve, sohbet ve arkadaþ buluþmalarý için karakterli bir kafe alternatifi.",
+    "kategori": 2,
+    "adres": "Ýsmet Karaokur Bulvarý, Þehit Abdullah Çavuþ Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.582919",
+    "longitude": "36.875219",
+    "telefon": "0344 223 46 49",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.164Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 44,
+  "fields": {
+    "isim": "Branda",
+    "aciklama": "Üniversite yolu üzerinde öðrenciler ve kampüs çevresi için kahve, atýþtýrmalýk ve mola odaklý kafe.",
+    "kategori": 2,
+    "adres": "Üniversite Yolu, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.590640",
+    "longitude": "36.834272",
+    "telefon": "0534 342 05 15",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.167Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 45,
+  "fields": {
+    "isim": "Osmanlý Kahvecisi",
+    "aciklama": "Maarif Mahallesi çevresinde Türk kahvesi, çay ve tatlý eþliðinde oturmak için uygun kafe duraðý.",
+    "kategori": 2,
+    "adres": "Üniversite Yolu, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.589295",
+    "longitude": "36.834529",
+    "telefon": "444 8 845",
+    "web_sitesi": "https://osmanlikahvecisi.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/45-osmanl-kahvecisi.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.169Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 46,
+  "fields": {
+    "isim": "By Pipo",
+    "aciklama": "Üniversite yolu hattýnda kahve, hýzlý mola ve arkadaþ buluþmalarý için rahat bir kafe seçeneði.",
+    "kategori": 2,
+    "adres": "Üniversite Yolu, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.590325",
+    "longitude": "36.834250",
+    "telefon": "0532 579 70 19",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.170Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 47,
+  "fields": {
+    "isim": "N-Tic Coffee",
+    "aciklama": "Maarif Mahallesi'nde kahve ve sakin çalýþma molasý arayanlar için modern kafe atmosferi sunar.",
+    "kategori": 2,
+    "adres": "Batý Çevre Yolu Bulvarý, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.587859",
+    "longitude": "36.838340",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.172Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 48,
+  "fields": {
+    "isim": "Shakespeare Coffee",
+    "aciklama": "Batý Çevre Yolu çevresinde kahve, tatlý ve keyifli oturma alaný arayanlar için zincir kafe alternatifi.",
+    "kategori": 2,
+    "adres": "Batý Çevre Yolu Bulvarý, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588382",
+    "longitude": "36.837446",
+    "telefon": "",
+    "web_sitesi": "https://en.shakespearebistro.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.173Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 49,
+  "fields": {
+    "isim": "Yaþar Ice",
+    "aciklama": "Akif Ýnan Mahallesi çevresinde dondurma, tatlý ve serin bir mola için tercih edilebilecek yerel tatlýcý.",
+    "kategori": 3,
+    "adres": "5008. Sokak, Akif Ýnan Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.587642",
+    "longitude": "36.892870",
+    "telefon": "0344 225 08 10",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/49-ya-ar-ice.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.175Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 50,
+  "fields": {
+    "isim": "Bear Cofee +Art",
+    "aciklama": "Kahve, sanat dokusu ve sakin oturma alaný arayanlar için Maarif Mahallesi çevresinde farklý bir kafe duraðý.",
+    "kategori": 2,
+    "adres": "Batý Çevre Yolu Bulvarý, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588325",
+    "longitude": "36.837545",
+    "telefon": "0531 260 87 67",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.177Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 52,
+  "fields": {
+    "isim": "AKDO",
+    "aciklama": "Vadi Mahallesi çevresinde dondurma, baklava ve Maraþ tatlýlarý için bilinen yerel marka duraðý.",
+    "kategori": 3,
+    "adres": "Sümbüllü Caddesi, Vadi Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.583478",
+    "longitude": "36.869901",
+    "telefon": "",
+    "web_sitesi": "https://akdondurma.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/52-akdo.jpg",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.180Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 53,
+  "fields": {
+    "isim": "Mimoza",
+    "aciklama": "Abdülhamid Han Mahallesi çevresinde günlük yemek, kahve ve mahalle molasý için kullanýlabilecek restoran.",
+    "kategori": 1,
+    "adres": "Ahmet Uncu Caddesi, Abdülhamid Han Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.586494",
+    "longitude": "36.902708",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.182Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 54,
+  "fields": {
+    "isim": "Kervanhan",
+    "aciklama": "Mehmet Akif Mahallesi'nde kebap, et ve yöresel yemek çizgisinde doyurucu restoran alternatifi.",
+    "kategori": 1,
+    "adres": "Recep Tayyip Erdoðan Bulvarý, Mehmet Akif Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.559732",
+    "longitude": "36.955151",
+    "telefon": "0344 236 68 69",
+    "web_sitesi": "https://kervanlezzetgrubu.com/iletisim",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.183Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 55,
+  "fields": {
+    "isim": "Harvey",
+    "aciklama": "Vadi Mahallesi çevresinde burger ve hýzlý yemek seçenekleriyle pratik bir sokak lezzeti duraðý.",
+    "kategori": 5,
+    "adres": "Sümbüllü Caddesi, Vadi Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.583596",
+    "longitude": "36.867652",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.185Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 56,
+  "fields": {
+    "isim": "Soulmate",
+    "aciklama": "Yirmiikigün Mahallesi çevresinde kahve, tatlý ve arkadaþ buluþmalarý için modern kafe seçeneði.",
+    "kategori": 2,
+    "adres": "91028 Sokak, Yirmiikigün Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.592258",
+    "longitude": "36.866315",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.187Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 57,
+  "fields": {
+    "isim": "% Arabica",
+    "aciklama": "Bin Evler hattýnda nitelikli kahve deneyimi ve kýsa þehir molasý için tercih edilebilecek marka kafe.",
+    "kategori": 2,
+    "adres": "Bediüzzaman Bulvarý, Bin Evler Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.591997",
+    "longitude": "36.867526",
+    "telefon": "",
+    "web_sitesi": "https://arabicacoffee.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/57-arabica.png",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.189Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 58,
+  "fields": {
+    "isim": "Burger King",
+    "aciklama": "Yamaçtepe çevresinde burger, patates ve hýzlý servis arayanlar için bilinen fast food duraðý.",
+    "kategori": 5,
+    "adres": "Turgut Özal Bulvarý, Yamaçtepe Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.591300",
+    "longitude": "36.837508",
+    "telefon": "444 54 64",
+    "web_sitesi": "https://www.burgerking.com.tr/",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.191Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 59,
+  "fields": {
+    "isim": "Popeyes",
+    "aciklama": "Yamaçtepe bölgesinde tavuk ürünleri ve hýzlý yemek seçenekleri için pratik bir fast food noktasý.",
+    "kategori": 5,
+    "adres": "Turgut Özal Bulvarý, Yamaçtepe Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.591203",
+    "longitude": "36.837581",
+    "telefon": "444 76 77",
+    "web_sitesi": "https://www.popeyes.com.tr/",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.192Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 61,
+  "fields": {
+    "isim": "Fatihler Kýraathane",
+    "aciklama": "Uludaz çevresinde çay, sohbet ve sakin mahalle molasý için geleneksel kýraathane atmosferi sunar.",
+    "kategori": 2,
+    "adres": "11 Nolu Sokak, Uludaz, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.441319",
+    "longitude": "36.728838",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.196Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 63,
+  "fields": {
+    "isim": "KSU Merkez Çarþý",
+    "aciklama": "KSÜ çevresinde öðrenciler için yemek, atýþtýrmalýk ve kampüs içi pratik mola noktasý.",
+    "kategori": 1,
+    "adres": "Batý Çevre Yolu Bulvarý, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588119",
+    "longitude": "36.827698",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:26:55.201Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 65,
+  "fields": {
+    "isim": "Giziroðlu Kebap",
+    "aciklama": "Kurtuluþ Mahallesi çevresinde kebap ve et yemekleri için yerel lezzet arayanlara uygun restoran.",
+    "kategori": 1,
+    "adres": "Semerci Sokak, Kurtuluþ Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.581908",
+    "longitude": "36.927433",
+    "telefon": "+905350504095",
+    "web_sitesi": "",
+    "calisma_baslangic": "10:00:00",
+    "calisma_bitis": "22:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:34:56.236Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 68,
+  "fields": {
+    "isim": "Gülhan",
+    "aciklama": "Yeni Þehir Mahallesi'nde kahve, tatlý ve þehir merkezi molasý için ulaþýmý kolay kafe seçeneði.",
+    "kategori": 2,
+    "adres": "Dayýzade Mehmet Efendi Caddesi, Yeni Þehir Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.574519",
+    "longitude": "36.931615",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:34:56.244Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 69,
+  "fields": {
+    "isim": "Gloria Jean's",
+    "aciklama": "Barbaros Caddesi üzerinde kahve zinciri konforu, tatlý ve çalýþma molasý arayanlar için uygun kafe.",
+    "kategori": 2,
+    "adres": "Barbaros Caddesi 48/a Onikiþubat Kahramanmaraþ",
+    "latitude": "37.584790",
+    "longitude": "36.869759",
+    "telefon": "",
+    "web_sitesi": "https://gloriajeans.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/69-gloria-jean-s.webp",
+    "olusturulma_tarihi": "2026-05-22T06:34:56.246Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 70,
+  "fields": {
+    "isim": "Bi Yer Kafe",
+    "aciklama": "Maarif Mahallesi çevresinde kahve, çay ve samimi oturma ortamýyla günlük buluþmalara uygun kafe.",
+    "kategori": 2,
+    "adres": "Batý Çevre Yolu Bulvarý, Maarif Mahallesi, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.586813",
+    "longitude": "36.838290",
+    "telefon": "0532 685 80 70",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:34:56.249Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 72,
+  "fields": {
+    "isim": "Armis Büfe",
+    "aciklama": "Ýstasyon Mahallesi çevresinde tost, sandviç ve hýzlý atýþtýrmalýklar için pratik büfe duraðý.",
+    "kategori": 5,
+    "adres": "Gazi Mustafa Kemal Bulvarý, Ýstasyon Mahallesi, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.555859",
+    "longitude": "36.924456",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T06:34:56.253Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 73,
+  "fields": {
+    "isim": "Ilýcalý Fýrýn",
+    "aciklama": "Yunus Emre Mahallesi'nde günlük ekmek, unlu mamuller ve sýcak fýrýn ürünleri için yerel mahalle fýrýný.",
+    "kategori": 4,
+    "adres": "Yunus Emre, 76023. Sk. No:28, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.582254",
+    "longitude": "36.900098",
+    "telefon": "0344 216 11 57",
+    "web_sitesi": "",
+    "calisma_baslangic": "07:00:00",
+    "calisma_bitis": "21:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/images.jpg",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.413Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 74,
+  "fields": {
+    "isim": "Gülpak Fýrýn",
+    "aciklama": "Barbaros çevresinde ekmek ve unlu mamuller için sabah alýþveriþlerine uygun mahalle fýrýný.",
+    "kategori": 4,
+    "adres": "Barbaros, Mehmet Ali Kýsakürek Caddesi, 46040 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.573830",
+    "longitude": "36.904949",
+    "telefon": "0344 234 19 95",
+    "web_sitesi": "",
+    "calisma_baslangic": "07:00:00",
+    "calisma_bitis": "21:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.419Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 75,
+  "fields": {
+    "isim": "Trabzon Ekmek Fýrýný",
+    "aciklama": "Fatih bölgesinde Trabzon ekmeði ve günlük fýrýn ürünleriyle öne çýkan yerel ekmek fýrýný.",
+    "kategori": 4,
+    "adres": "Fatih, Kadir Paþa Blv. No:30, 46150 Kahramanmaraþ Merkez/Kahramanmaraþ",
+    "latitude": "37.574900",
+    "longitude": "36.943900",
+    "telefon": "",
+    "web_sitesi": "",
+    "calisma_baslangic": "07:00:00",
+    "calisma_bitis": "21:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.422Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 76,
+  "fields": {
+    "isim": "Lokmarley",
+    "aciklama": "Yeni nesil lokma, çikolatalý tatlýlar ve hýzlý tatlý molasý için Haydar Bey çevresinde sevilen durak.",
+    "kategori": 3,
+    "adres": "Haydar Bey, 92007. Sok. No:42G, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.584900",
+    "longitude": "36.880900",
+    "telefon": "0344 221 57 58",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.425Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 77,
+  "fields": {
+    "isim": "Gaymak Dondurma & Cafe",
+    "aciklama": "Maraþ dondurmasý, tatlý ve kafe molasý için merkezde kolay ulaþýlabilen yerel tatlý duraðý.",
+    "kategori": 3,
+    "adres": "Ýsmet Paþa, Hükümet Blv. No:18, Kahramanmaraþ Merkez/Kahramanmaraþ",
+    "latitude": "37.578467",
+    "longitude": "36.929333",
+    "telefon": "0344 225 12 12",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/77-gaymak-dondurma-cafe.png",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.428Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 78,
+  "fields": {
+    "isim": "Maraþ Hanzade Baklava Dondurma",
+    "aciklama": "Tekerek yolu üzerinde baklava, dondurma ve geleneksel tatlý çeþitleri için güçlü bir tatlýcý seçeneði.",
+    "kategori": 3,
+    "adres": "Kayseri yolu Aðcalý rampasý çýkýþý, Tekerek Sk., 46100 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.598300",
+    "longitude": "36.936900",
+    "telefon": "0507 213 47 78",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.432Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 79,
+  "fields": {
+    "isim": "Teksos Döner Maraþ",
+    "aciklama": "Þehit Abdullah Çavuþ çevresinde döner ve hýzlý öðün arayanlar için pratik sokak lezzeti noktasý.",
+    "kategori": 5,
+    "adres": "Þehit Abdullah Çavuþ, Alparslan Türkeþ Blv. Sevgi Apt D:51/C, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588446",
+    "longitude": "36.883952",
+    "telefon": "0344 225 50 50",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.435Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 80,
+  "fields": {
+    "isim": "Doy Doy Döner",
+    "aciklama": "Serintepe tarafýnda döner, hýzlý servis ve doyurucu öðün isteyenler için mahalle ölçeðinde lezzet duraðý.",
+    "kategori": 5,
+    "adres": "Serintepe, Maðralý Ökkeþ Cd. No:166/1, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.590500",
+    "longitude": "36.910900",
+    "telefon": "0344 224 21 39",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.438Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 81,
+  "fields": {
+    "isim": "Toros Döner",
+    "aciklama": "Vezir Hoca Bulvarý üzerinde döner ve hýzlý yemek seçenekleriyle Dulkadiroðlu tarafýnda pratik durak.",
+    "kategori": 5,
+    "adres": "Yahya Kemal, Vezir Hoca Blv. No:124/A, 46030 Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.572800",
+    "longitude": "36.947600",
+    "telefon": "0533 268 46 46",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.441Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 82,
+  "fields": {
+    "isim": "Tatlý Çiðköfte",
+    "aciklama": "Çið köfte, paket servis ve hýzlý atýþtýrmalýk arayanlar için Þehit Abdullah Çavuþ çevresinde uygun seçenek.",
+    "kategori": 5,
+    "adres": "Þehit Abdullah Çavuþ, Alparslan Türkeþ Blv. No:51, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588455",
+    "longitude": "36.884029",
+    "telefon": "0344 216 16 22",
+    "web_sitesi": "",
+    "calisma_baslangic": "11:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-22T16:54:12.444Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 83,
+  "fields": {
+    "isim": "Taþcýoðlu Tatlýcýlýk",
+    "aciklama": "Kahramanmaraþ merkezde tatlý, dondurma ve kýsa þehir molasý için tercih edilebilecek yerel tatlýcý.",
+    "kategori": 3,
+    "adres": "Kurtuluþ, Atatürk Blv. No:22, 46100 Kahramanmaraþ Merkez/Kahramanmaraþ",
+    "latitude": "37.584633",
+    "longitude": "36.926547",
+    "telefon": "0344 221 54 95",
+    "web_sitesi": "",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.333Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 84,
+  "fields": {
+    "isim": "Tatmar",
+    "aciklama": "Baklava, yaþ pasta, kuru pasta ve geleneksel tatlýlar için Onikiþubat tarafýnda güçlü tatlýcý seçeneði.",
+    "kategori": 3,
+    "adres": "Serintepe Mah. Bayazýtlý Bulv. No:54/A, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.590500",
+    "longitude": "36.910900",
+    "telefon": "0544 561 63 73",
+    "web_sitesi": "https://www.tatmar.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/84-tatmar.jpg",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.335Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 85,
+  "fields": {
+    "isim": "Akif Þekerleme",
+    "aciklama": "Maraþ'ýn yöresel tatlarý, þekerleme ve hediyelik lezzetleri için yerel bir tatlý ve þekerleme duraðý.",
+    "kategori": 3,
+    "adres": "Þehit Abdullah Çavuþ Mah. Alpaslan Türkeþ Blv. No:67/1, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.588455",
+    "longitude": "36.884029",
+    "telefon": "0344 214 87 88",
+    "web_sitesi": "https://dukkan.akifsekerleme.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.336Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 86,
+  "fields": {
+    "isim": "Arif Þekerleme",
+    "aciklama": "Fýstýk ezmesi, lokum, Maraþ kurabiyesi ve yöresel þekerleme ürünleriyle öne çýkan yerel iþletme.",
+    "kategori": 3,
+    "adres": "Necip Fazýl Mah. Alparslan Türkeþ Blv. No:14/B, 46050 Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.587206",
+    "longitude": "36.896014",
+    "telefon": "0530 229 22 99",
+    "web_sitesi": "https://www.arifsekerleme.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.336Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 87,
+  "fields": {
+    "isim": "Karpedo Dondurma",
+    "aciklama": "Maraþ dondurmasý ve serin tatlý molasý için merkez çevresinde bilinen yerel dondurmacý.",
+    "kategori": 3,
+    "adres": "Yavuz Selim, 73036. Sk. No:17, 46080 Kahramanmaraþ Merkez/Kahramanmaraþ",
+    "latitude": "37.559354",
+    "longitude": "36.956002",
+    "telefon": "0344 236 06 37",
+    "web_sitesi": "https://www.karpedo.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/87-karpedo-dondurma.png",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.337Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 88,
+  "fields": {
+    "isim": "Karmando Dondurma",
+    "aciklama": "Dulkadiroðlu tarafýnda Maraþ dondurmasý, tatlý ve ailece mola için tercih edilebilecek dondurma duraðý.",
+    "kategori": 3,
+    "adres": "Karacasu Kýrým Mah. 83010 Sokak No:1A, Dulkadiroðlu/Kahramanmaraþ",
+    "latitude": "37.566752",
+    "longitude": "36.949298",
+    "telefon": "0539 608 87 93",
+    "web_sitesi": "https://www.karmandodondurma.com/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/88-karmando-dondurma.jpg",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.337Z"
+  }
+},
+{
+  "model": "gurmerota.mekan",
+  "pk": 89,
+  "fields": {
+    "isim": "Alpedo Dondurma",
+    "aciklama": "Maraþ dondurmasý ve tatlý çeþitleriyle þehirde bilinen marka; geleneksel tatlý molasý için güçlü seçenek.",
+    "kategori": 3,
+    "adres": "Hacý Mustafa Mah. Gazi Mustafa Kemal Blv. No:136/A, Onikiþubat/Kahramanmaraþ",
+    "latitude": "37.559732",
+    "longitude": "36.955151",
+    "telefon": "0344 237 62 22",
+    "web_sitesi": "https://www.alpedo.com.tr/",
+    "calisma_baslangic": "09:00:00",
+    "calisma_bitis": "23:00:00",
+    "calisma_gunleri": "0,1,2,3,4,5,6",
+    "kapak_fotografi": "mekan_kapaklari/89-alpedo-dondurma.jpg",
+    "olusturulma_tarihi": "2026-05-23T10:03:24.338Z"
+  }
+},
+{
+  "model": "gurmerota.mekanfoto",
+  "pk": 1,
+  "fields": {
+    "mekan": 1,
+    "image": "mekan_fotograflari/114374kahramanmaras-kocabas-konagijpg.png",
+    "sira": 0,
+    "olusturulma_tarihi": "2026-05-07T06:05:19.552Z"
+  }
+},
+{
+  "model": "gurmerota.mekanfoto",
+  "pk": 2,
+  "fields": {
+    "mekan": 5,
+    "image": "mekan_fotograflari/images_1.jpeg",
+    "sira": 0,
+    "olusturulma_tarihi": "2026-05-07T06:06:30.274Z"
+  }
+},
+{
+  "model": "gurmerota.mekanfoto",
+  "pk": 3,
+  "fields": {
+    "mekan": 9,
+    "image": "mekan_fotograflari/cdd2-46-Doner-interior.jpg",
+    "sira": 0,
+    "olusturulma_tarihi": "2026-05-07T08:14:34.696Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 3,
+  "fields": {
+    "mekan": 1,
+    "kullanici": 8,
+    "yorum": "çok iyi",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-04T10:30:28.820Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 4,
+  "fields": {
+    "mekan": 6,
+    "kullanici": 9,
+    "yorum": "gfcvgngf",
+    "puan": 1,
+    "olusturulma_tarihi": "2026-05-07T07:19:38.024Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 5,
+  "fields": {
+    "mekan": 7,
+    "kullanici": 6,
+    "yorum": "künefe severlere öneririm",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-07T08:07:38.784Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 6,
+  "fields": {
+    "mekan": 8,
+    "kullanici": 6,
+    "yorum": "10 numara mekan herþeyi çok iyi ustasý þahane",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-07T08:10:48.157Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 8,
+  "fields": {
+    "mekan": 5,
+    "kullanici": 6,
+    "yorum": "nice",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-08T07:58:33.641Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 9,
+  "fields": {
+    "mekan": 11,
+    "kullanici": 6,
+    "yorum": "steak mükemmel deneyin",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-11T10:32:47.241Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 10,
+  "fields": {
+    "mekan": 6,
+    "kullanici": 6,
+    "yorum": "cköbndlnb",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-11T10:51:00.851Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 11,
+  "fields": {
+    "mekan": 9,
+    "kullanici": 10,
+    "yorum": "soksok cihaangir",
+    "puan": 1,
+    "olusturulma_tarihi": "2026-05-11T10:54:57.415Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 12,
+  "fields": {
+    "mekan": 6,
+    "kullanici": 10,
+    "yorum": "MERTÝ VE CÝHANGÝRÝ COK SEVÝYORUM",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-11T10:55:25.292Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 13,
+  "fields": {
+    "mekan": 11,
+    "kullanici": 9,
+    "yorum": "çok iyi",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-14T05:49:59.911Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 14,
+  "fields": {
+    "mekan": 3,
+    "kullanici": 9,
+    "yorum": "dzxv dxbdfgv",
+    "puan": 2,
+    "olusturulma_tarihi": "2026-05-15T07:34:06.498Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 15,
+  "fields": {
+    "mekan": 73,
+    "kullanici": 6,
+    "yorum": "Gardaþýmýn saðlam fýrýnýdýr Beldelli Lahmacun hediyeli",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-22T17:01:29.043Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 16,
+  "fields": {
+    "mekan": 13,
+    "kullanici": 15,
+    "yorum": "Lezzet dengesi iyi, servis daha yoðun saatlerde biraz deðiþebiliyor.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.963Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 17,
+  "fields": {
+    "mekan": 14,
+    "kullanici": 21,
+    "yorum": "Tatlý molasý için listede öne çýkabilecek keyifli bir durak.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.964Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 18,
+  "fields": {
+    "mekan": 15,
+    "kullanici": 16,
+    "yorum": "Yemekleri doyurucu, ana yemek için tercih edilebilecek güzel bir yer.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.964Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 19,
+  "fields": {
+    "mekan": 16,
+    "kullanici": 26,
+    "yorum": "Kahve molasý için keyifli bir yer, ortamý sakin ve rahat.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.965Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 20,
+  "fields": {
+    "mekan": 17,
+    "kullanici": 21,
+    "yorum": "Lezzet dengesi iyi, servis daha yoðun saatlerde biraz deðiþebiliyor.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.965Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 21,
+  "fields": {
+    "mekan": 18,
+    "kullanici": 28,
+    "yorum": "Hýzlý ve pratik bir lezzet molasý için iyi bir seçenek.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.966Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 22,
+  "fields": {
+    "mekan": 19,
+    "kullanici": 18,
+    "yorum": "Lezzet dengesi iyi, servis daha yoðun saatlerde biraz deðiþebiliyor.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.966Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 24,
+  "fields": {
+    "mekan": 21,
+    "kullanici": 19,
+    "yorum": "Menü seçenekleri yeterli, fiyat-performans olarak makul duruyor.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.967Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 25,
+  "fields": {
+    "mekan": 22,
+    "kullanici": 19,
+    "yorum": "Konumu pratik, kýsa bir mola için beklentiyi karþýlýyor.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.968Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 26,
+  "fields": {
+    "mekan": 23,
+    "kullanici": 21,
+    "yorum": "Arkadaþlarla oturup sohbet etmek için güzel bir alternatif.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.968Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 27,
+  "fields": {
+    "mekan": 24,
+    "kullanici": 27,
+    "yorum": "Konumu ve menüsüyle aile buluþmalarý için uygun görünüyor.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.969Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 28,
+  "fields": {
+    "mekan": 25,
+    "kullanici": 19,
+    "yorum": "Rota üzerinde yemek molasý vermek için uygun bir durak.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.969Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 29,
+  "fields": {
+    "mekan": 26,
+    "kullanici": 15,
+    "yorum": "Menü sade ama yeterli, ortamý temiz ve oturmasý rahat.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.969Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 32,
+  "fields": {
+    "mekan": 29,
+    "kullanici": 22,
+    "yorum": "Yerel lezzet arayanlarýn listeye alabileceði bir restoran.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.971Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 33,
+  "fields": {
+    "mekan": 30,
+    "kullanici": 19,
+    "yorum": "Kahve molasý için keyifli bir yer, ortamý sakin ve rahat.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.971Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 34,
+  "fields": {
+    "mekan": 31,
+    "kullanici": 21,
+    "yorum": "Kahve içip biraz dinlenmek isteyenler için hoþ bir durak.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.972Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 35,
+  "fields": {
+    "mekan": 32,
+    "kullanici": 19,
+    "yorum": "Tatýlý ve içecek molasýnda tekrar tercih edilebilecek bir mekan.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.972Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 36,
+  "fields": {
+    "mekan": 33,
+    "kullanici": 17,
+    "yorum": "Kahve içip biraz dinlenmek isteyenler için hoþ bir durak.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.972Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 37,
+  "fields": {
+    "mekan": 34,
+    "kullanici": 14,
+    "yorum": "Tatýlý ve içecek molasýnda tekrar tercih edilebilecek bir mekan.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.973Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 38,
+  "fields": {
+    "mekan": 35,
+    "kullanici": 25,
+    "yorum": "Kahve molasý için keyifli bir yer, ortamý sakin ve rahat.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.973Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 39,
+  "fields": {
+    "mekan": 36,
+    "kullanici": 22,
+    "yorum": "Tatýlý ve içecek molasýnda tekrar tercih edilebilecek bir mekan.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.974Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 40,
+  "fields": {
+    "mekan": 37,
+    "kullanici": 19,
+    "yorum": "Gün içinde uðranýp nefes almak için güzel bir seçenek.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.974Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 41,
+  "fields": {
+    "mekan": 38,
+    "kullanici": 18,
+    "yorum": "Tatýlý ve içecek molasýnda tekrar tercih edilebilecek bir mekan.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.975Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 42,
+  "fields": {
+    "mekan": 39,
+    "kullanici": 22,
+    "yorum": "Arkadaþlarla oturup sohbet etmek için güzel bir alternatif.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.975Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 43,
+  "fields": {
+    "mekan": 40,
+    "kullanici": 20,
+    "yorum": "Paket ya da hýzlý yemek için pratik bir tercih.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.975Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 45,
+  "fields": {
+    "mekan": 42,
+    "kullanici": 13,
+    "yorum": "Kahve içip biraz dinlenmek isteyenler için hoþ bir durak.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.976Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 47,
+  "fields": {
+    "mekan": 44,
+    "kullanici": 20,
+    "yorum": "Arkadaþlarla oturup sohbet etmek için güzel bir alternatif.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.977Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 48,
+  "fields": {
+    "mekan": 45,
+    "kullanici": 14,
+    "yorum": "Kahve molasý için keyifli bir yer, ortamý sakin ve rahat.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.977Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 49,
+  "fields": {
+    "mekan": 46,
+    "kullanici": 22,
+    "yorum": "Kahve içip biraz dinlenmek isteyenler için hoþ bir durak.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.978Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 50,
+  "fields": {
+    "mekan": 47,
+    "kullanici": 24,
+    "yorum": "Gün içinde uðranýp nefes almak için güzel bir seçenek.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.978Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 51,
+  "fields": {
+    "mekan": 48,
+    "kullanici": 23,
+    "yorum": "Kahve içip biraz dinlenmek isteyenler için hoþ bir durak.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.979Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 52,
+  "fields": {
+    "mekan": 49,
+    "kullanici": 13,
+    "yorum": "Arkadaþlarla oturup sohbet etmek için güzel bir alternatif.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.979Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 53,
+  "fields": {
+    "mekan": 50,
+    "kullanici": 17,
+    "yorum": "Gün içinde uðranýp nefes almak için güzel bir seçenek.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.980Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 54,
+  "fields": {
+    "mekan": 52,
+    "kullanici": 28,
+    "yorum": "Servis ve atmosfer genel olarak iyi, sakin zamanlarda daha keyifli.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.980Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 55,
+  "fields": {
+    "mekan": 53,
+    "kullanici": 22,
+    "yorum": "Yemekleri doyurucu, ana yemek için tercih edilebilecek güzel bir yer.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.981Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 56,
+  "fields": {
+    "mekan": 54,
+    "kullanici": 21,
+    "yorum": "Yerel lezzet arayanlarýn listeye alabileceði bir restoran.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.981Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 57,
+  "fields": {
+    "mekan": 55,
+    "kullanici": 27,
+    "yorum": "Gün içinde acýkýnca kurtarýcý bir alternatif.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.982Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 58,
+  "fields": {
+    "mekan": 56,
+    "kullanici": 19,
+    "yorum": "Konumu pratik, kýsa bir mola için beklentiyi karþýlýyor.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.982Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 59,
+  "fields": {
+    "mekan": 57,
+    "kullanici": 27,
+    "yorum": "Arkadaþlarla oturup sohbet etmek için güzel bir alternatif.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.982Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 60,
+  "fields": {
+    "mekan": 58,
+    "kullanici": 22,
+    "yorum": "Atýþtýrmalýk için uðranýlabilir, konumu da rahat.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.983Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 61,
+  "fields": {
+    "mekan": 59,
+    "kullanici": 27,
+    "yorum": "Atýþtýrmalýk için uðranýlabilir, konumu da rahat.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.983Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 63,
+  "fields": {
+    "mekan": 61,
+    "kullanici": 17,
+    "yorum": "Menü sade ama yeterli, ortamý temiz ve oturmasý rahat.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.984Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 65,
+  "fields": {
+    "mekan": 63,
+    "kullanici": 23,
+    "yorum": "Akþam yemeði için deðerlendirilebilecek iyi bir alternatif.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.985Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 67,
+  "fields": {
+    "mekan": 65,
+    "kullanici": 15,
+    "yorum": "Lezzet dengesi iyi, servis daha yoðun saatlerde biraz deðiþebiliyor.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.986Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 70,
+  "fields": {
+    "mekan": 68,
+    "kullanici": 24,
+    "yorum": "Gün içinde uðranýp nefes almak için güzel bir seçenek.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.987Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 71,
+  "fields": {
+    "mekan": 69,
+    "kullanici": 17,
+    "yorum": "Gün içinde uðranýp nefes almak için güzel bir seçenek.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.988Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 72,
+  "fields": {
+    "mekan": 70,
+    "kullanici": 23,
+    "yorum": "Menü sade ama yeterli, ortamý temiz ve oturmasý rahat.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.988Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 74,
+  "fields": {
+    "mekan": 72,
+    "kullanici": 17,
+    "yorum": "Hýzlý ve pratik bir lezzet molasý için iyi bir seçenek.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.989Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 75,
+  "fields": {
+    "mekan": 74,
+    "kullanici": 28,
+    "yorum": "Ekmek ve atýþtýrmalýk konusunda beklentiyi karþýlayan bir yer.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.989Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 76,
+  "fields": {
+    "mekan": 75,
+    "kullanici": 20,
+    "yorum": "Yakýndaysanýz uðramaya deðer, pratik ve temiz bir fýrýn.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.990Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 77,
+  "fields": {
+    "mekan": 76,
+    "kullanici": 23,
+    "yorum": "Tatlý isteðini iyi karþýlayan, rahat ulaþýlan bir mekan.",
+    "puan": 5,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.990Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 78,
+  "fields": {
+    "mekan": 77,
+    "kullanici": 18,
+    "yorum": "Serin ve tatlý bir ara vermek isteyenler için güzel bir seçenek.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.990Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 79,
+  "fields": {
+    "mekan": 78,
+    "kullanici": 25,
+    "yorum": "Konumu ve ürün çeþidiyle tatlý molasýna uygun görünüyor.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.991Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 80,
+  "fields": {
+    "mekan": 79,
+    "kullanici": 24,
+    "yorum": "Ayaküstü bir þeyler yemek isteyenler için uygun bir durak.",
+    "puan": 4,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.991Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 81,
+  "fields": {
+    "mekan": 80,
+    "kullanici": 25,
+    "yorum": "Rota üzerinde pratik bir mola noktasý olarak güzel duruyor.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.992Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 82,
+  "fields": {
+    "mekan": 81,
+    "kullanici": 14,
+    "yorum": "Rota üzerinde pratik bir mola noktasý olarak güzel duruyor.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.992Z"
+  }
+},
+{
+  "model": "gurmerota.yorum",
+  "pk": 83,
+  "fields": {
+    "mekan": 82,
+    "kullanici": 26,
+    "yorum": "Lezzeti yerinde, hýzlý servis beklentisini karþýlýyor.",
+    "puan": 3,
+    "olusturulma_tarihi": "2026-05-23T09:49:02.993Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 3,
+  "fields": {
+    "kullanici": 9,
+    "mekan": 5,
+    "olusturulma_tarihi": "2026-05-07T06:15:14.842Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 6,
+  "fields": {
+    "kullanici": 6,
+    "mekan": 8,
+    "olusturulma_tarihi": "2026-05-07T09:05:08.707Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 7,
+  "fields": {
+    "kullanici": 9,
+    "mekan": 9,
+    "olusturulma_tarihi": "2026-05-15T07:31:53.789Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 8,
+  "fields": {
+    "kullanici": 6,
+    "mekan": 9,
+    "olusturulma_tarihi": "2026-05-23T15:48:01.682Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 10,
+  "fields": {
+    "kullanici": 11,
+    "mekan": 73,
+    "olusturulma_tarihi": "2026-05-24T17:50:31.764Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 11,
+  "fields": {
+    "kullanici": 11,
+    "mekan": 15,
+    "olusturulma_tarihi": "2026-05-24T17:50:44.230Z"
+  }
+},
+{
+  "model": "gurmerota.favori",
+  "pk": 13,
+  "fields": {
+    "kullanici": 11,
+    "mekan": 86,
+    "olusturulma_tarihi": "2026-05-24T17:52:43.203Z"
+  }
+}
+]

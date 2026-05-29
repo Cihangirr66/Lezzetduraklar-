@@ -1,0 +1,163 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Favoriler</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { margin: 0; background: #f6f8fb; font-family: "Inter", "Segoe UI", sans-serif; overflow-x: hidden; }
+        .topbar {
+            background: #5d4037;
+            color: #fff;
+            border-bottom: 3px solid #3e2723;
+            padding: 12px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .brand-logo {
+            height: 72px;
+            width: auto;
+            display: block;
+        }
+        .auth-links a {
+            margin-left: 12px;
+            text-decoration: none;
+            color: #fff2cc;
+            font-weight: 700;
+        }
+        .hero {
+            max-width: 1150px;
+            margin: 14px auto 0;
+            padding: 0 16px;
+        }
+        .hero-box {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+        .wrap { max-width: 1150px; margin: 14px auto 16px; padding: 0 16px; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+        .cards {
+            padding: 14px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .card {
+            border: 1px solid #d2c4ae;
+            border-radius: 14px;
+            padding: 14px;
+            background: #fff;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+        }
+        .card:hover { background: #fff8ee; transform: translateY(-3px); box-shadow: 0 14px 26px rgba(0,0,0,.16); }
+        .meta { font-size: 15px; color: #4f4f4f; margin: 2px 0; }
+        .btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 6px 10px;
+            border-radius: 3px;
+            font-size: 15px;
+            text-decoration: none;
+            color: #fff;
+            background: #6d4c41;
+            border: 1px solid #4e342e;
+        }
+        @media (max-width: 900px) {
+            .cards { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .brand-logo { height: 54px; }
+            .topbar {
+                padding: 10px 12px;
+            }
+            .hero,
+            .wrap {
+                padding: 0 10px;
+            }
+            .hero-box {
+                border-radius: 10px;
+                padding: 14px;
+            }
+            .cards {
+                padding: 10px;
+            }
+            .card h3 {
+                font-size: 18px !important;
+                overflow-wrap: anywhere;
+            }
+            .meta {
+                font-size: 14px;
+                overflow-wrap: anywhere;
+            }
+            .btn {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                min-height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+    </a>
+    <div class="auth-links">
+        <a href="{% url 'home' %}"><i class="bi bi-compass"></i> Keşfet</a>
+        <a href="{% url 'meshur-lezzetler' %}"><i class="bi bi-stars"></i> Lezzetler</a>
+        <a href="{% url 'rotam' %}"><i class="bi bi-signpost-split"></i> Rotam</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+        {% endif %}
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-box">
+        <h1 style="margin:0;">Favoriler</h1>
+        <p class="meta" style="margin:6px 0 0;">Kaydettiğin mekanları tek yerden hızlıca yönet.</p>
+    </div>
+</section>
+
+<div class="wrap">
+    {% if favori_mekanlar %}
+        <div class="cards">
+            {% for mekan in favori_mekanlar %}
+                <a class="card" href="{% url 'mekan-detay' mekan.id %}">
+                    <h3 style="margin:0 0 6px;font-size:21px;">{{ mekan.isim }}</h3>
+                    <p class="meta">{{ mekan.kategori.isim }} - {{ mekan.adres }}</p>
+                    <p class="meta">Ortalama puan: {{ mekan.ortalama_puan|default:"0"|floatformat:1 }}/5</p>
+                    <span class="btn">Detaya git</span>
+                </a>
+            {% empty %}
+                <p class="meta">Henüz favoriniz yok.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="meta">Henüz favoriniz yok.</p>
+    {% endif %}
+</div>
+{% include "partials/footer.html" %}
+</body>
+</html>

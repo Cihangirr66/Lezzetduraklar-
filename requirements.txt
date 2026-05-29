@@ -1,0 +1,9 @@
+asgiref==3.11.1
+Django==6.0.4
+django-cors-headers==4.9.0
+django-jazzmin==3.0.4
+djangorestframework==3.17.1
+firebase-admin==7.4.0
+pillow==12.2.0
+python-dotenv==1.2.2
+sqlparse==0.5.5

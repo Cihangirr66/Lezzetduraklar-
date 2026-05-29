@@ -1,0 +1,135 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ sayfa_basligi|default:"Mekan Ekle" }}</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { margin: 0; background: #f6f8fb; font-family: "Inter", "Segoe UI", sans-serif; overflow-x: hidden; }
+        .topbar {
+            background: #5d4037;
+            color: #fff;
+            border-bottom: 3px solid #3e2723;
+            padding: 12px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand { display: inline-flex; align-items: center; text-decoration: none; }
+        .brand-logo { height: 72px; width: auto; display: block; }
+        .auth-links a {
+            margin-left: 12px;
+            text-decoration: none;
+            color: #fff2cc;
+            font-weight: 700;
+        }
+        .wrap {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fffdf9;
+            border: 1px solid #b8aa93;
+            padding: 20px;
+        }
+        input, textarea, select {
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            padding: 8px;
+            border: 1px solid #b8aa93;
+            font-family: inherit;
+        }
+        input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            padding: 0;
+        }
+        #id_calisma_gunleri {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+            margin: 8px 0 14px;
+        }
+        #id_calisma_gunleri > div {
+            margin: 0;
+        }
+        #id_calisma_gunleri label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            padding: 8px 10px;
+            border: 1px solid #d6c8b5;
+            background: #fff8ec;
+            color: #2f251f;
+            cursor: pointer;
+        }
+        [data-theme="dark"] #id_calisma_gunleri label {
+            border-color: #2f3948;
+            background: #111827;
+            color: #f5f7fb;
+        }
+        button {
+            padding: 8px 12px;
+            border: 1px solid #4e342e;
+            background: #6d4c41;
+            color: #fff;
+        }
+        a { color: #5d4037; }
+        @media (max-width: 600px) {
+            .brand-logo { height: 54px; }
+            .topbar {
+                padding: 10px 12px;
+            }
+            .auth-links {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            .auth-links a {
+                margin-left: 0;
+            }
+            .wrap {
+                width: calc(100% - 20px);
+                margin: 22px auto;
+                padding: 16px;
+                border-radius: 10px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            button {
+                width: 100%;
+                min-height: 42px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+    </a>
+    <div class="auth-links">
+        <a href="{% url 'home' %}">Keşfet</a>
+        <a href="{% url 'rotam' %}">Rotam</a>
+    </div>
+</header>
+<div class="wrap">
+    <h1>{{ sayfa_basligi|default:"Yeni Mekan Ekle" }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-primary" type="submit">{{ buton_yazisi|default:"Mekanı Kaydet" }}</button>
+    </form>
+    <p><a href="{% url 'home' %}">Ana sayfaya dön</a></p>
+</div>
+{% include "partials/footer.html" %}
+</body>
+</html>

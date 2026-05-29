@@ -1,0 +1,114 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giriş Yap</title>
+    {% include "partials/theme_head.html" %}
+    <link rel="stylesheet" href="{% static 'css/auth_ui.css' %}">
+    <style>
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { font-family: "Inter", "Segoe UI", sans-serif; background: #f6f8fb; margin: 0; overflow-x: hidden; }
+        .topbar {
+            background: #5d4037;
+            color: #fff;
+            border-bottom: 3px solid #3e2723;
+            padding: 12px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand { display: inline-flex; align-items: center; text-decoration: none; }
+        .brand-logo { height: 72px; width: auto; display: block; }
+        .auth-links a {
+            margin-left: 12px;
+            text-decoration: none;
+            color: #fff2cc;
+            font-weight: 700;
+        }
+        .box {
+            max-width: 420px;
+            margin: 60px auto;
+            background: #fffdf9;
+            border: 1px solid #b8aa93;
+            border-radius: 3px;
+            padding: 24px;
+        }
+        h1 { margin-top: 0; }
+        p { margin: 8px 0; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 14px;
+            border: 1px solid #b8aa93;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        button {
+            border: 1px solid #4e342e;
+            border-radius: 2px;
+            padding: 8px 14px;
+            background: #6d4c41;
+            color: #fff;
+            font-weight: 600;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        a { color: #5d4037; text-decoration: underline; }
+        @media (max-width: 600px) {
+            .brand-logo { height: 54px; }
+            .topbar {
+                padding: 10px 12px;
+            }
+            .auth-links {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            .auth-links a {
+                margin-left: 0;
+            }
+            .box {
+                width: calc(100% - 20px);
+                margin: 22px auto;
+                padding: 18px;
+                border-radius: 10px;
+            }
+            button {
+                width: 100%;
+                min-height: 42px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+    </a>
+    <div class="auth-links">
+        <a href="{% url 'home' %}">Keşfet</a>
+        <a href="{% url 'rotam' %}">Rotam</a>
+    </div>
+</header>
+<div class="box">
+    <h1>Giriş Yap</h1>
+    <p class="auth-lead">Favorilerini, yorumlarını ve rotalarını güvenli hesabınla yönet.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Giriş</button>
+    </form>
+    <p><a href="{% url 'password_reset' %}">Şifremi unuttum</a></p>
+    <p>Hesabın yok mu? <a href="{% url 'kayit' %}">Kayıt Ol</a></p>
+    <p><a href="{% url 'home' %}">Ana Sayfaya Dön</a></p>
+</div>
+{% include "partials/footer.html" %}
+</body>
+</html>

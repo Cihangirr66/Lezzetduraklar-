@@ -1,0 +1,521 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Raporlar - Lezzet Durakları</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --line: #e5e7eb;
+            --line-strong: #cbd5e1;
+            --text: #111827;
+            --muted: #64748b;
+            --ink: #0f172a;
+            --accent: #ea580c;
+            --blue: #2563eb;
+            --teal: #0f766e;
+            --shadow-sm: 0 8px 22px rgba(15, 23, 42, .07);
+        }
+        [data-theme="dark"] {
+            --bg: #0f1115;
+            --surface: #171b23;
+            --surface-soft: #11151d;
+            --line: #2a2f3a;
+            --line-strong: #3a4252;
+            --text: #e5e7eb;
+            --muted: #aeb7c5;
+            --ink: #f8fafc;
+            --accent: #f97316;
+            --blue: #60a5fa;
+            --teal: #5eead4;
+            --shadow-sm: 0 10px 24px rgba(0, 0, 0, .34);
+        }
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body { margin: 0; background: linear-gradient(180deg, #fff 0%, var(--bg) 38%, #eef3f8 100%); font-family: "Inter", "Segoe UI", sans-serif; color: var(--text); }
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(14px);
+            padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+        }
+        .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; font-weight: 800; min-width: 0; }
+        .brand span { min-width: 0; overflow-wrap: anywhere; }
+        .brand-logo { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); object-fit: cover; }
+        .nav-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+        .wrap { width: min(1180px, calc(100% - 28px)); margin: 16px auto 22px; }
+        .wrap { background: transparent !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+        .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow-sm); }
+        .hero { padding: 18px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+        .hero h1 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.1; letter-spacing: 0; }
+        .hero p { margin: 6px 0 0; color: var(--muted); }
+        .filters { padding: 16px; display: grid; grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) auto auto auto; gap: 12px; align-items: end; margin-bottom: 12px; }
+        .report-actions { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+        .report-actions strong { display: block; font-size: 15px; }
+        .report-actions .muted { display: block; margin-top: 3px; font-size: 12px; }
+        .report-action-buttons { display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+        .print-heading { display: none; }
+        .field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+        .field label { font-size: 12px; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: .2px; }
+        .field input { min-height: 46px; border-radius: 9px; border: 1px solid var(--line-strong); padding: 0 12px; background: var(--surface-soft); color: var(--text); }
+        .field input:focus { outline: 3px solid rgba(37, 99, 235, .13); border-color: #93c5fd; background: var(--surface); }
+        .btn {
+            min-height: 42px; border-radius: 9px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
+            padding: 0 12px; font-weight: 800; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 7px; white-space: nowrap;
+        }
+        .btn:hover { border-color: #94a3b8; box-shadow: 0 6px 16px rgba(15, 23, 42, .07); }
+        .btn-primary { background: linear-gradient(135deg, #f97316 0%, var(--accent) 100%); color: #fff; border-color: var(--accent); box-shadow: 0 10px 18px rgba(234, 88, 12, .18); }
+        .stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+        .stat { padding: 14px; min-height: 96px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 2px rgba(15, 23, 42, .05); }
+        .stat .v { font-size: 28px; font-weight: 900; display: block; line-height: 1; color: var(--ink); }
+        .stat .k { font-size: 12px; color: var(--muted); text-transform: uppercase; font-weight: 800; letter-spacing: .2px; }
+        .grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 14px; margin-bottom: 14px; }
+        .section { padding: 16px; margin-bottom: 14px; overflow: hidden; }
+        .section h2, .section h3 { margin: 0 0 12px; font-size: 19px; letter-spacing: 0; }
+        .chart-bars { display: grid; gap: 12px; }
+        .bar-row { display: grid; grid-template-columns: 120px 1fr 48px; align-items: center; gap: 10px; font-size: 14px; }
+        .bar-row strong { color: var(--ink); }
+        .bar-track { height: 16px; border-radius: 999px; overflow: hidden; background: var(--surface-soft); border: 1px solid var(--line); }
+        .bar-fill { width: var(--w); height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue), #14b8a6); }
+        .bar-fill.alt { background: linear-gradient(90deg, var(--teal), #22c55e); }
+        .mini-list { display: grid; gap: 10px; }
+        .mini-item { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+        .mini-item strong { display: block; }
+        .mini-item span { color: var(--muted); font-size: 13px; }
+        .quality-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+        .quality-card { border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); padding: 12px; min-width: 0; }
+        .quality-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .quality-top span { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+        .quality-top strong { font-size: 26px; color: var(--ink); line-height: 1; }
+        .quality-list { display: grid; gap: 6px; }
+        .quality-list a, .quality-list span { color: var(--muted); font-size: 13px; text-decoration: none; overflow-wrap: anywhere; }
+        .priority-list { display: grid; gap: 8px; margin-top: 12px; }
+        .priority-item { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 8px; }
+        .priority-item a { color: var(--ink); font-weight: 800; text-decoration: none; }
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+        th, td { border-bottom: 1px solid var(--line); text-align: left; padding: 10px 9px; vertical-align: top; }
+        th { font-size: 12px; text-transform: uppercase; color: var(--muted); background: var(--surface-soft); letter-spacing: .2px; }
+        tbody tr:nth-child(even) { background: var(--surface-soft); }
+        tr:last-child td { border-bottom: 0; }
+        .muted { color: var(--muted); }
+        [data-theme="dark"] body { background: #0f1115; color: #e5e7eb; }
+        [data-theme="dark"] .card, [data-theme="dark"] .topbar { background: #171b23 !important; border-color: #2a2f3a !important; color: #e5e7eb !important; }
+        [data-theme="dark"] .muted, [data-theme="dark"] .hero p, [data-theme="dark"] .stat .k, [data-theme="dark"] .mini-item span { color: #aeb7c5 !important; }
+        [data-theme="dark"] .stat .v, [data-theme="dark"] .bar-row strong { color: #f3f4f6 !important; }
+        [data-theme="dark"] .field input, [data-theme="dark"] .btn { background: #11151d; border-color: #2a2f3a; color: #e5e7eb; }
+        [data-theme="dark"] .btn-primary { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important; border-color: #ea580c !important; color: #fff !important; }
+        [data-theme="dark"] th { background: #11151d; color: #aeb7c5; }
+        [data-theme="dark"] td, [data-theme="dark"] th, [data-theme="dark"] .mini-item, [data-theme="dark"] .quality-card, [data-theme="dark"] .priority-item { border-color: #2a2f3a; }
+        [data-theme="dark"] .quality-card { background: #11151d; }
+        [data-theme="dark"] .quality-top strong, [data-theme="dark"] .priority-item a { color: #f3f4f6; }
+        [data-theme="dark"] .quality-top span, [data-theme="dark"] .quality-list a, [data-theme="dark"] .quality-list span { color: #aeb7c5; }
+        [data-theme="dark"] tbody tr:nth-child(even) { background: rgba(17, 21, 29, .55); }
+        [data-theme="dark"] .bar-track { background: #11151d; border-color: #2a2f3a; }
+        @media (max-width: 980px) {
+            .filters { grid-template-columns: 1fr 1fr; }
+            .filters .btn { min-height: 44px; }
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .quality-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid { grid-template-columns: 1fr; }
+            .report-actions { align-items: flex-start; }
+            .report-action-buttons { justify-content: flex-start; }
+        }
+        @media (max-width: 620px) {
+            .topbar, .hero { align-items: flex-start; flex-direction: column; }
+            .topbar { padding: 10px 12px; }
+            .nav-actions { width: 100%; justify-content: stretch; }
+            .nav-actions .btn { flex: 1; }
+            .filters, .stats, .quality-grid { grid-template-columns: 1fr; }
+            .bar-row { grid-template-columns: 86px 1fr 38px; }
+            .wrap {
+                width: min(100% - 20px, 1180px);
+                margin-top: 10px;
+            }
+            .filters .btn,
+            .filters button {
+                width: 100%;
+            }
+            .section {
+                padding: 12px;
+            }
+            .hero {
+                padding: 14px;
+            }
+            .table-wrap {
+                margin: 0 -2px;
+            }
+        }
+        @media (max-width: 380px) {
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+            }
+            .brand span {
+                font-size: 14px;
+            }
+            .nav-actions .btn {
+                flex-basis: 100%;
+            }
+            .bar-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .bar-row span {
+                font-weight: 900;
+            }
+        }
+        @media print {
+            .topbar, .nav-actions, .theme-toggle, .no-print, footer { display: none !important; }
+            body { background: #fff !important; color: #111827 !important; }
+            .wrap { width: 100%; margin: 0; }
+            .card { box-shadow: none !important; break-inside: avoid; }
+            .grid { grid-template-columns: 1fr; }
+            .print-heading { display: block; margin: 0 0 14px; }
+            .print-heading h2 { margin: 0 0 4px; font-size: 22px; }
+            .print-heading p { margin: 0; color: #4b5563; }
+            body.printing-section .hero { display: none !important; }
+            body.printing-section .print-section { display: none !important; }
+            body.printing-section .print-section.print-target { display: block !important; }
+            body.printing-section .filters.print-target { display: grid !important; grid-template-columns: 1fr 1fr; }
+            .filters { margin-bottom: 0; }
+            .filters .print-heading { grid-column: 1 / -1; }
+            .field input { border-color: #9ca3af; }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+        <span>Lezzet Durakları Rapor Merkezi</span>
+    </a>
+    <div class="nav-actions">
+        <a class="btn" href="{% url 'home' %}"><i class="bi bi-compass"></i> Keşfet</a>
+        <a class="btn" href="/admin/"><i class="bi bi-shield-lock"></i> Yönetim</a>
+    </div>
+</header>
+
+<main class="wrap">
+    <section class="card hero">
+        <div>
+            <h1>Raporlar</h1>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <div class="muted">Yetkili kullanıcı paneli</div>
+    </section>
+
+    <form id="rapor-filtreleri" method="get" class="card filters print-section" data-print-title="Filtre Raporu">
+        <div class="print-heading">
+            <h2>Filtre Raporu</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <div class="field">
+            <label for="baslangic">Başlangıç Tarihi</label>
+            <input id="baslangic" type="date" name="baslangic" value="{{ baslangic }}">
+        </div>
+        <div class="field">
+            <label for="bitis">Bitiş Tarihi</label>
+            <input id="bitis" type="date" name="bitis" value="{{ bitis }}">
+        </div>
+        <button class="btn btn-primary no-print" type="submit"><i class="bi bi-funnel-fill"></i> Filtrele</button>
+        <a class="btn no-print" href="{% url 'raporlar' %}"><i class="bi bi-x-circle"></i> Temizle</a>
+        <button class="btn no-print" type="button" onclick="window.print()"><i class="bi bi-printer"></i> Yazdır/PDF</button>
+    </form>
+
+    <section class="card report-actions no-print" aria-label="Rapor çıktıları">
+        <div>
+            <strong>Ayrı çıktı al</strong>
+            <span class="muted">İhtiyacın olan rapor bölümünü tek başına yazdır.</span>
+        </div>
+        <div class="report-action-buttons">
+            <button class="btn" type="button" data-print-section="rapor-ozet"><i class="bi bi-bar-chart-fill"></i> Özet/Grafik</button>
+            <button class="btn" type="button" data-print-section="rapor-kalite"><i class="bi bi-clipboard-data"></i> Veri Kalitesi</button>
+            <button class="btn" type="button" data-print-section="rapor-mekan"><i class="bi bi-shop"></i> Mekan Raporu</button>
+            <button class="btn" type="button" data-print-section="rapor-yorum"><i class="bi bi-chat-left-text"></i> Yorum Raporu</button>
+            <button class="btn" type="button" data-print-section="rapor-favori"><i class="bi bi-heart-fill"></i> Favori Raporu</button>
+            <button class="btn" type="button" onclick="window.print()"><i class="bi bi-printer"></i> Tüm Rapor</button>
+        </div>
+    </section>
+
+    <section id="rapor-ozet" class="print-section" data-print-title="Özet ve Grafik Raporu">
+        <div class="print-heading">
+            <h2>Özet ve Grafik Raporu</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+
+    <section class="stats">
+        <div class="card stat"><span class="v">{{ mekan_sayisi }}</span><span class="k">Mekan Kaydı</span></div>
+        <div class="card stat"><span class="v">{{ yorum_sayisi }}</span><span class="k">Yorum</span></div>
+        <div class="card stat"><span class="v">{{ favori_sayisi }}</span><span class="k">Favori</span></div>
+        <div class="card stat"><span class="v">{{ kullanici_sayisi }}</span><span class="k">Kullanıcı</span></div>
+        <div class="card stat"><span class="v">{{ yetkili_sayisi }}</span><span class="k">Yetkili Rol</span></div>
+    </section>
+
+    <div class="grid">
+        <section class="card section">
+            <h2>Genel Süreç Grafiği</h2>
+            <div class="chart-bars" aria-label="Mekan, yorum ve favori istatistikleri">
+                <div class="bar-row">
+                    <strong>Mekan</strong>
+                    <div class="bar-track"><div class="bar-fill" style="--w:{% widthratio mekan_sayisi chart_max 100 %}%"></div></div>
+                    <span>{{ mekan_sayisi }}</span>
+                </div>
+                <div class="bar-row">
+                    <strong>Yorum</strong>
+                    <div class="bar-track"><div class="bar-fill" style="--w:{% widthratio yorum_sayisi chart_max 100 %}%"></div></div>
+                    <span>{{ yorum_sayisi }}</span>
+                </div>
+                <div class="bar-row">
+                    <strong>Favori</strong>
+                    <div class="bar-track"><div class="bar-fill" style="--w:{% widthratio favori_sayisi chart_max 100 %}%"></div></div>
+                    <span>{{ favori_sayisi }}</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card section">
+            <h2>Son Günlük Kayıtlar</h2>
+            <div class="chart-bars">
+                {% for kayit in gunluk_kayitlar %}
+                    <div class="bar-row">
+                        <strong>{{ kayit.gun|date:"d.m" }}</strong>
+                        <div class="bar-track"><div class="bar-fill alt" style="--w:{% widthratio kayit.toplam gunluk_chart_max 100 %}%"></div></div>
+                        <span>{{ kayit.toplam }}</span>
+                    </div>
+                {% empty %}
+                    <p class="muted">Seçili aralıkta kayıt yok.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <div class="grid">
+        <section class="card section">
+            <h2>Kategori Dağılımı</h2>
+            <div class="chart-bars">
+                {% for kategori in kategori_istatistikleri %}
+                    <div class="bar-row">
+                        <strong>{{ kategori.isim }}</strong>
+                        <div class="bar-track"><div class="bar-fill" style="--w:{% widthratio kategori.mekan_adedi kategori_chart_max 100 %}%"></div></div>
+                        <span>{{ kategori.mekan_adedi }}</span>
+                    </div>
+                {% empty %}
+                    <p class="muted">Kategori verisi yok.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="card section">
+            <h2>Popüler Mekanlar</h2>
+            <div class="mini-list">
+                {% for mekan in populer_mekanlar %}
+                    <div class="mini-item">
+                        <div>
+                            <strong>{{ mekan.isim }}</strong>
+                            <span>{{ mekan.kategori.isim }}</span>
+                        </div>
+                        <div>
+                            <strong>{{ mekan.yorum_adedi }}</strong>
+                            <span>{{ mekan.ortalama|default:"0"|floatformat:1 }}/5</span>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="muted">Henüz yorum verisi yok.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    </section>
+
+    <section id="rapor-kalite" class="card section print-section" data-print-title="Veri Kalite Paneli">
+        <div class="print-heading">
+            <h2>Veri Kalite Paneli</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <h3>Veri Kalite Paneli</h3>
+        <p class="muted">{{ kalite_toplam_sorun }} adet veri kalitesi aksiyonu bekliyor.</p>
+        <div class="quality-grid">
+            {% for panel in kalite_paneller %}
+                <article class="quality-card">
+                    <div class="quality-top">
+                        <span><i class="bi {{ panel.icon }}"></i> {{ panel.label }}</span>
+                        <strong>{{ panel.count }}</strong>
+                    </div>
+                    <div class="quality-list">
+                        {% for mekan in panel.items %}
+                            <a href="{% url 'mekan-duzenle' mekan.id %}">{{ mekan.isim }}</a>
+                        {% empty %}
+                            <span>Tamam</span>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+        <div class="priority-list">
+            {% for mekan in kalite_oncelikli %}
+                <div class="priority-item">
+                    <a href="{% url 'mekan-duzenle' mekan.id %}">{{ mekan.isim }}</a>
+                    <span class="muted">{{ mekan.kategori.isim }}</span>
+                </div>
+            {% empty %}
+                <p class="muted">Oncelikli duzenleme bekleyen mekan yok.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="rapor-mekan" class="card section print-section" data-print-title="Mekan Raporu">
+        <div class="print-heading">
+            <h2>Mekan Raporu</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <h3>Mekan Raporu</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mekan</th><th>Kategori</th><th>Adres</th><th>Telefon</th><th>Oluşturulma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in mekanlar %}
+                        <tr>
+                            <td>{{ m.isim }}</td>
+                            <td>{{ m.kategori.isim }}</td>
+                            <td>{{ m.adres }}</td>
+                            <td>{{ m.telefon|default:"-" }}</td>
+                            <td>{{ m.olusturulma_tarihi|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="5">Kayıt bulunamadı.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="rapor-yorum" class="card section print-section" data-print-title="Yorum Raporu">
+        <div class="print-heading">
+            <h2>Yorum Raporu</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <h3>Yorum Raporu</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kullanıcı</th><th>Mekan</th><th>Puan</th><th>Yorum</th><th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for y in yorumlar %}
+                        <tr>
+                            <td>{{ y.kullanici.username }}</td>
+                            <td>{{ y.mekan.isim }}</td>
+                            <td>{{ y.puan }}/5</td>
+                            <td>{{ y.yorum|truncatechars:120 }}</td>
+                            <td>{{ y.olusturulma_tarihi|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="5">Kayıt bulunamadı.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="rapor-favori" class="card section print-section" data-print-title="Favori Raporu">
+        <div class="print-heading">
+            <h2>Favori Raporu</h2>
+            <p>Rapor tarihi: {{ rapor_tarihi|date:"d.m.Y H:i" }}</p>
+        </div>
+        <h3>Favori Raporu</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kullanıcı</th><th>Mekan</th><th>Kategori</th><th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in favoriler %}
+                        <tr>
+                            <td>{{ f.kullanici.username }}</td>
+                            <td>{{ f.mekan.isim }}</td>
+                            <td>{{ f.mekan.kategori.isim }}</td>
+                            <td>{{ f.olusturulma_tarihi|date:"d.m.Y H:i" }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="4">Kayıt bulunamadı.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script>
+(function(){
+  var originalTitle = document.title;
+  var activeSection = null;
+
+  function clearPrintTarget() {
+    document.body.classList.remove("printing-section");
+    if (activeSection) activeSection.classList.remove("print-target");
+    activeSection = null;
+    document.title = originalTitle;
+  }
+
+  document.querySelectorAll("[data-print-section]").forEach(function(button){
+    button.addEventListener("click", function(){
+      clearPrintTarget();
+      activeSection = document.getElementById(button.dataset.printSection);
+      if (!activeSection) return;
+      activeSection.classList.add("print-target");
+      document.body.classList.add("printing-section");
+      document.title = activeSection.dataset.printTitle || originalTitle;
+      window.print();
+    });
+  });
+
+  window.addEventListener("afterprint", clearPrintTarget);
+})();
+
+(function(){
+  var shareButton = document.createElement("button");
+  shareButton.className = "btn";
+  shareButton.type = "button";
+  shareButton.innerHTML = '<i class="bi bi-share"></i> Paylaş';
+  var actions = document.querySelector(".nav-actions");
+  if (actions) actions.appendChild(shareButton);
+  shareButton.addEventListener("click", async function(){
+    var shareData = {
+      title: "Lezzet Durakları Raporu",
+      text: "Filtrelenmiş raporu inceleyebilirsiniz.",
+      url: window.location.href
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch (e) {}
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Rapor bağlantısı panoya kopyalandı.");
+    } catch (e) {
+      alert("Paylaşım desteklenmiyor. Bağlantıyı manuel kopyalayabilirsiniz.");
+    }
+  });
+})();
+</script>
+{% include "partials/footer.html" %}
+</body>
+</html>

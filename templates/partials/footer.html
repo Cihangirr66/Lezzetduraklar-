@@ -1,0 +1,207 @@
+{% load static %}
+<style>
+    .site-footer {
+        margin-top: 22px;
+        border-top: 1px solid #e5e7eb;
+        background:
+            linear-gradient(135deg, rgba(255, 143, 0, .08), transparent 34%),
+            linear-gradient(315deg, rgba(61, 220, 132, .07), transparent 38%),
+            #ffffff;
+        color: #1f2937;
+    }
+    .site-footer-inner {
+        width: min(1180px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 28px 0 18px;
+        display: grid;
+        grid-template-columns: 1.35fr repeat(3, minmax(150px, 1fr));
+        gap: 22px;
+    }
+    .footer-brand {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .footer-logo {
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        object-fit: cover;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 22px rgba(15, 23, 42, .12);
+        flex: 0 0 auto;
+    }
+    .footer-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: 0;
+        color: #111827;
+    }
+    .footer-text {
+        margin: 7px 0 0;
+        color: #6b7280;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+    .footer-col h3 {
+        margin: 0 0 10px;
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        color: #111827;
+    }
+    .footer-links {
+        display: grid;
+        gap: 8px;
+    }
+    .footer-links a,
+    .footer-chip {
+        color: #4b5563 !important;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+    }
+    .footer-links a:hover {
+        color: #ea580c !important;
+    }
+    .footer-chip {
+        width: fit-content;
+        min-height: 32px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        background: #f8fafc;
+        color: #374151 !important;
+    }
+    .footer-bottom {
+        width: min(1180px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 14px 0 18px;
+        border-top: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: #6b7280;
+        font-size: 13px;
+        font-weight: 700;
+    }
+    [data-theme="dark"] .site-footer {
+        border-top-color: #2a2f3a;
+        background:
+            linear-gradient(135deg, rgba(255, 143, 0, .10), transparent 34%),
+            linear-gradient(315deg, rgba(61, 220, 132, .08), transparent 38%),
+            #11151d;
+        color: #e5e7eb;
+    }
+    [data-theme="dark"] .footer-title,
+    [data-theme="dark"] .footer-col h3 {
+        color: #f3f4f6;
+    }
+    [data-theme="dark"] .footer-text,
+    [data-theme="dark"] .footer-bottom,
+    [data-theme="dark"] .footer-links a,
+    [data-theme="dark"] .footer-chip {
+        color: #aeb7c5 !important;
+    }
+    [data-theme="dark"] .footer-chip {
+        border-color: #2a2f3a;
+        background: #171b23;
+    }
+    [data-theme="dark"] .footer-bottom,
+    [data-theme="dark"] .footer-logo {
+        border-color: #2a2f3a;
+    }
+    @media (max-width: 920px) {
+        .site-footer-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    @media (max-width: 620px) {
+        .site-footer-inner {
+            grid-template-columns: 1fr;
+            padding-top: 22px;
+            width: min(100% - 20px, 1180px);
+        }
+        .footer-brand {
+            align-items: center;
+        }
+        .footer-links a,
+        .footer-chip {
+            width: 100%;
+            min-height: 36px;
+        }
+        .footer-bottom {
+            flex-direction: column;
+            width: min(100% - 20px, 1180px);
+        }
+    }
+    @media (max-width: 380px) {
+        .footer-brand {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+        }
+    }
+</style>
+
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <div class="footer-brand">
+            <img class="footer-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+            <div>
+                <h2 class="footer-title">Lezzet Durakları</h2>
+                <p class="footer-text">Kahramanmaraş lezzetlerini keşfet, favorilerini kaydet ve sana uygun rotayı birkaç tıkla oluştur.</p>
+                <span class="footer-chip"><i class="bi bi-geo-alt-fill"></i> Yerel lezzet keşif platformu</span>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Keşif</h3>
+            <div class="footer-links">
+                <a href="{% url 'home' %}"><i class="bi bi-compass"></i> Ana Sayfa</a>
+                <a href="{% url 'meshur-lezzetler' %}"><i class="bi bi-stars"></i> Lezzetler</a>
+                <a href="{% url 'rotam' %}"><i class="bi bi-signpost-split"></i> Rotam</a>
+                <a href="{% url 'home' %}?sirala=puan"><i class="bi bi-trophy"></i> En İyiler</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Hesap</h3>
+            <div class="footer-links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profil' %}"><i class="bi bi-person-circle"></i> Profil</a>
+                    <a href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+                    <a href="{% url 'password_reset' %}"><i class="bi bi-key"></i> Şifre Yenile</a>
+                {% else %}
+                    <a href="{% url 'giris' %}"><i class="bi bi-box-arrow-in-right"></i> Giriş Yap</a>
+                    <a href="{% url 'kayit' %}"><i class="bi bi-person-plus"></i> Kayıt Ol</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h3>Yönetim</h3>
+            <div class="footer-links">
+                {% if user.is_authenticated and user.is_staff %}
+                    <a href="/admin/"><i class="bi bi-shield-lock"></i> Yönetim</a>
+                    <a href="{% url 'raporlar' %}"><i class="bi bi-bar-chart-line"></i> Raporlar</a>
+                {% else %}
+                    <span class="footer-chip"><i class="bi bi-shield-check"></i> Güvenli oturum</span>
+                    <span class="footer-chip"><i class="bi bi-phone"></i> Mobil uyumlu</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© {% now "Y" %} Lezzet Durakları</span>
+    </div>
+</footer>

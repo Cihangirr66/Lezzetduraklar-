@@ -1,0 +1,1172 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lezzet Durakları</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        :root {
+            --bg: #f6f8fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --line: #e5e7eb;
+            --line-strong: #cbd5e1;
+            --text: #111827;
+            --muted: #64748b;
+            --muted-strong: #475569;
+            --accent: #ea580c;
+            --accent-strong: #c2410c;
+            --accent-soft: #fff7ed;
+            --green: #15803d;
+            --green-soft: #ecfdf5;
+            --blue: #2563eb;
+            --ink: #0f172a;
+            --shadow-xs: 0 1px 2px rgba(15, 23, 42, .05);
+            --shadow-sm: 0 8px 22px rgba(15, 23, 42, .07);
+            --shadow-md: 0 14px 34px rgba(15, 23, 42, .10);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f1115;
+            --surface: #171b23;
+            --surface-soft: #11151d;
+            --line: #2a2f3a;
+            --line-strong: #3a4252;
+            --text: #e5e7eb;
+            --muted: #aeb7c5;
+            --muted-strong: #cbd5e1;
+            --accent: #f97316;
+            --accent-strong: #fed7aa;
+            --accent-soft: rgba(249, 115, 22, .12);
+            --green: #86efac;
+            --green-soft: rgba(34, 197, 94, .14);
+            --blue: #60a5fa;
+            --ink: #f8fafc;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, .3);
+            --shadow-sm: 0 10px 24px rgba(0, 0, 0, .34);
+            --shadow-md: 0 18px 42px rgba(0, 0, 0, .42);
+        }
+
+        * { box-sizing: border-box; }
+        html { overflow-x: hidden; }
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background:
+                linear-gradient(180deg, #ffffff 0%, var(--bg) 34%, #eef3f8 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        img, iframe { max-width: 100%; }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, .94);
+            border-bottom: 1px solid var(--line);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(14px);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            min-width: 0;
+        }
+        .brand-logo {
+            height: 54px;
+            width: 54px;
+            border-radius: 999px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow-xs);
+        }
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .brand-title {
+            margin: 0;
+            font-size: clamp(16px, 1.8vw, 22px);
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: 0;
+            line-height: 1.1;
+            white-space: nowrap;
+        }
+        .brand-subtitle {
+            margin: 2px 0 0;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .auth-links {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted-strong);
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            min-width: 0;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .auth-links > span {
+            min-width: 0;
+            max-width: 220px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .auth-links a { color: var(--ink); text-decoration: none; font-weight: 700; }
+        .profile-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 36px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--ink) !important;
+            font-weight: 700;
+            box-shadow: var(--shadow-xs);
+        }
+        .link-btn {
+            border: 1px solid #fecdd3;
+            background: #fff1f2;
+            color: #be123c;
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: none;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .page {
+            max-width: 1180px;
+            margin: 18px auto;
+            padding: 0 16px 20px;
+        }
+        .hero {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(28px, 3.2vw, 44px);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .filters-box {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: var(--shadow-sm);
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+        .filters-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .filters-head strong {
+            font-size: 22px;
+            color: var(--text);
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+        .quick-search {
+            flex: 1;
+            min-height: 44px;
+            border-radius: 10px;
+            border: 1px solid var(--line-strong);
+            padding: 0 12px;
+            font-size: 14px;
+            background: var(--surface-soft);
+            color: var(--text);
+        }
+        .quick-search:focus,
+        .filter-item select:focus {
+            outline: 3px solid rgba(37, 99, 235, .12);
+            border-color: #93c5fd;
+            background: var(--surface);
+        }
+        .filters-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(280px, .9fr);
+            gap: 14px;
+            align-items: start;
+        }
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .filter-item label {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .2px;
+        }
+        .filter-item select {
+            min-height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--line-strong);
+            padding: 0 10px;
+            background: var(--surface-soft);
+            color: var(--text);
+        }
+        .checkboxes {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface-soft);
+        }
+        .checkbox-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--muted-strong);
+        }
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: nowrap;
+        }
+        .filter-submit,
+        .action-btn,
+        .clear-btn {
+            min-height: 42px;
+            border-radius: 10px;
+            padding: 0 10px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            gap: 6px;
+        }
+        .filter-submit {
+            border: 1px solid var(--accent);
+            background: linear-gradient(135deg, #f97316 0%, var(--accent) 100%);
+            color: #fff;
+            cursor: pointer;
+            flex: 1;
+            box-shadow: 0 10px 18px rgba(234, 88, 12, .18);
+        }
+        .action-btn { flex: 1; min-width: 0; }
+        .btn-rotam {
+            background: #f8fafc;
+            border: 1px solid var(--line-strong);
+            color: var(--ink) !important;
+        }
+        .btn-add {
+            background: var(--green-soft);
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+        .clear-btn {
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--muted-strong);
+            width: 100%;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-items: stretch;
+        }
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            min-height: 820px;
+        }
+        .panel h2 {
+            margin: 0;
+            padding: 14px;
+            border-bottom: 1px solid var(--line);
+            font-size: 21px;
+            color: var(--text);
+            letter-spacing: 0;
+            background: linear-gradient(180deg, var(--surface) 0%, var(--surface-soft) 100%);
+        }
+        .panel-subtitle {
+            margin: 10px 14px 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .cards-scroll {
+            max-height: 760px;
+            overflow-y: auto;
+            padding: 14px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .pagination-wrap {
+            padding: 0 14px 14px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            min-width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--muted-strong);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+        .page-btn.active {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff;
+        }
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 12px;
+            background: var(--surface);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            cursor: pointer;
+            min-width: 0;
+            box-shadow: var(--shadow-xs);
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+        .card:hover {
+            border-color: #fed7aa;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .card-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text);
+            line-height: 1.2;
+            overflow-wrap: anywhere;
+        }
+        .rating { color: var(--ink); font-size: 14px; font-weight: 800; white-space: nowrap; }
+        .rating i { color: #f59e0b; }
+        .badge-near {
+            display: inline-block;
+            background: var(--green-soft);
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 22px;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 800;
+            border: 1px solid var(--line);
+            vertical-align: middle;
+        }
+        .status-pill.open {
+            background: var(--green-soft);
+            border-color: #bbf7d0;
+            color: #166534;
+        }
+        .status-pill.closed {
+            background: #fff1f2;
+            border-color: #fecdd3;
+            color: #be123c;
+        }
+        .meta { margin: 3px 0; color: var(--muted-strong); font-size: 13px; line-height: 1.45; }
+        .meta i { margin-right: 6px; color: var(--accent); }
+        .card-image {
+            width: 86px;
+            height: 112px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            object-fit: cover;
+        }
+        .card-placeholder {
+            background:
+                radial-gradient(circle at 24% 18%, rgba(255,255,255,.72), transparent 30%),
+                linear-gradient(135deg, #fffaf3 0%, #ffedd5 52%, #fed7aa 100%);
+            color: var(--accent-strong);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+            padding: 8px;
+        }
+        .card-placeholder i {
+            font-size: 24px;
+            line-height: 1;
+        }
+        .card-placeholder span {
+            font-size: 11px;
+            font-weight: 900;
+            line-height: 1.15;
+            overflow-wrap: anywhere;
+        }
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .card-btn {
+            flex: 1;
+            min-height: 38px;
+            border-radius: 10px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--muted-strong);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            gap: 6px;
+        }
+        .card-btn-detail {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff;
+        }
+        .card-btn-detail:hover {
+            filter: brightness(1.08);
+        }
+        .card-btn-fav {
+            background: var(--accent-soft);
+            border-color: #fed7aa;
+            color: var(--accent-strong);
+        }
+        .card-btn-fav.is-active {
+            background: #fff1f2;
+            border-color: #fecdd3;
+            color: #be123c;
+        }
+
+        .map-status {
+            margin: 10px 14px 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .map-wrap { position: relative; margin-top: 10px; border-top: 1px solid var(--line); background: #eef2f7; }
+        .map-frame {
+            width: 100%;
+            height: 760px;
+            border: 0;
+            display: block;
+        }
+        .map-controls {
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 3;
+        }
+        .map-zoom-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--line-strong);
+            background: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow-xs);
+        }
+        .map-legend {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            z-index: 3;
+            background: rgba(255,255,255,.96);
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 12px;
+            color: #374151;
+        }
+
+        .message {
+            margin-bottom: 12px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #374151;
+        }
+
+        [data-theme="dark"] body {
+            background: #0f1115;
+            color: #e5e7eb;
+        }
+        [data-theme="dark"] .topbar {
+            background: #12151c;
+            border-bottom-color: #2a2f3a;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+        }
+        [data-theme="dark"] .brand-title {
+            color: #f3f4f6;
+        }
+        [data-theme="dark"] .brand-subtitle {
+            color: #aeb7c5;
+        }
+        [data-theme="dark"] .auth-links,
+        [data-theme="dark"] .auth-links a {
+            color: #d1d5db !important;
+        }
+        [data-theme="dark"] .profile-chip {
+            background: #1f2430;
+            border-color: #3a4252;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .link-btn {
+            background: rgba(244, 63, 94, .12);
+            border-color: rgba(244, 63, 94, .36);
+            color: #fecdd3;
+        }
+        [data-theme="dark"] .hero,
+        [data-theme="dark"] .filters-box,
+        [data-theme="dark"] .panel,
+        [data-theme="dark"] .message,
+        [data-theme="dark"] .card {
+            background: #171b23 !important;
+            border-color: #2a2f3a !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .hero h1,
+        [data-theme="dark"] .panel h2,
+        [data-theme="dark"] .card h3,
+        [data-theme="dark"] .filters-head strong {
+            color: #f3f4f6 !important;
+        }
+        [data-theme="dark"] .panel-subtitle,
+        [data-theme="dark"] .meta,
+        [data-theme="dark"] .map-status,
+        [data-theme="dark"] .filter-item label {
+            color: #aeb7c5 !important;
+        }
+        [data-theme="dark"] .quick-search,
+        [data-theme="dark"] .filter-item select,
+        [data-theme="dark"] .checkboxes {
+            background: #11151d !important;
+            border-color: #2a2f3a !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .checkbox-wrap {
+            color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .clear-btn,
+        [data-theme="dark"] .btn-rotam,
+        [data-theme="dark"] .btn-add,
+        [data-theme="dark"] .card-btn,
+        [data-theme="dark"] .page-btn,
+        [data-theme="dark"] .map-zoom-btn {
+            background: #1f2430 !important;
+            border-color: #3a4252 !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .filter-submit {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+            border-color: #ea580c !important;
+        }
+        [data-theme="dark"] .card-btn-detail {
+            background: #111827 !important;
+            border-color: #0b1220 !important;
+            color: #fff !important;
+        }
+        [data-theme="dark"] .page-btn.active {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+            border-color: #ea580c !important;
+            color: #fff !important;
+        }
+        [data-theme="dark"] .map-wrap {
+            background: #11151d !important;
+        }
+        [data-theme="dark"] .map-legend {
+            background: rgba(23, 27, 35, 0.96) !important;
+            border-color: #2a2f3a !important;
+            color: #e5e7eb !important;
+        }
+        [data-theme="dark"] .badge-near {
+            background: rgba(76, 175, 80, 0.18) !important;
+            border-color: rgba(76, 175, 80, 0.5) !important;
+            color: #b9f6ca !important;
+        }
+        [data-theme="dark"] .status-pill.open {
+            background: rgba(34, 197, 94, .14) !important;
+            border-color: rgba(34, 197, 94, .36) !important;
+            color: #b9f6ca !important;
+        }
+        [data-theme="dark"] .status-pill.closed,
+        [data-theme="dark"] .card-btn-fav.is-active {
+            background: rgba(244, 63, 94, .12) !important;
+            border-color: rgba(244, 63, 94, .36) !important;
+            color: #fecdd3 !important;
+        }
+        [data-theme="dark"] .card-placeholder {
+            background:
+                radial-gradient(circle at 25% 20%, rgba(255,255,255,.08), transparent 28%),
+                linear-gradient(135deg, #292524 0%, #431407 50%, #7c2d12 100%) !important;
+            color: #fed7aa !important;
+            border-color: #7c2d12 !important;
+        }
+        [data-theme="dark"] .panel h2 {
+            border-bottom-color: #2a2f3a !important;
+        }
+
+        @media (max-width: 1200px) {
+            .page {
+                max-width: 100%;
+                padding: 0 14px 18px;
+            }
+            .panel {
+                min-height: 740px;
+            }
+            .cards-scroll {
+                max-height: 680px;
+            }
+            .map-frame {
+                height: 680px;
+            }
+        }
+        @media (max-width: 1024px) {
+            .topbar {
+                padding: 10px 14px;
+            }
+            .brand-logo {
+                width: 48px;
+                height: 48px;
+            }
+            .auth-links {
+                font-size: 13px;
+                gap: 8px;
+            }
+            .link-btn {
+                font-size: 12px;
+                padding: 7px 10px;
+            }
+            .filters-layout { grid-template-columns: 1fr; }
+            .filters-grid { grid-template-columns: 1fr; }
+            .layout { grid-template-columns: 1fr; }
+            .panel { min-height: auto; }
+            .cards-scroll {
+                max-height: none;
+                overflow: visible;
+            }
+            .map-frame {
+                height: 460px;
+            }
+            .actions {
+                flex-wrap: wrap;
+            }
+            .filter-submit,
+            .action-btn {
+                flex: 1 1 calc(50% - 4px);
+            }
+            .clear-btn {
+                width: 100%;
+            }
+        }
+        @media (max-width: 760px) {
+            .filters-head { flex-direction: column; align-items: flex-start; }
+            .quick-search { width: 100%; }
+            .card { grid-template-columns: 1fr; }
+            .card-image { width: 100%; height: 180px; }
+            .hero {
+                padding: 18px 14px;
+            }
+            .hero h1 {
+                font-size: clamp(22px, 7vw, 30px);
+            }
+            .map-frame {
+                height: 380px;
+            }
+            .filter-submit,
+            .action-btn {
+                flex: 1 1 100%;
+            }
+        }
+        @media (max-width: 520px) {
+            .topbar {
+                padding: 8px 12px;
+                flex-wrap: wrap;
+                row-gap: 8px;
+            }
+            .brand {
+                width: 100%;
+            }
+            .brand-logo {
+                height: 42px;
+                width: 42px;
+            }
+            .brand-title {
+                font-size: 15px;
+                white-space: normal;
+            }
+            .brand-subtitle {
+                white-space: normal;
+            }
+            .auth-links {
+                width: 100%;
+                justify-content: stretch;
+                font-size: 12px;
+                gap: 8px;
+                white-space: normal;
+            }
+            .auth-links > span {
+                flex: 1 1 100%;
+                max-width: none;
+            }
+            .auth-links a,
+            .auth-links form,
+            .profile-chip,
+            .link-btn {
+                flex: 1 1 calc(50% - 4px);
+            }
+            .auth-links a,
+            .profile-chip,
+            .link-btn {
+                min-height: 40px;
+                justify-content: center;
+            }
+            .auth-links form .link-btn {
+                width: 100%;
+            }
+            .page {
+                padding: 0 10px 14px;
+            }
+            .filters-box {
+                padding: 12px;
+                border-radius: 10px;
+            }
+            .filters-head strong {
+                font-size: 20px;
+            }
+            .checkboxes {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .card-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .card-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            .cards-scroll {
+                padding: 10px;
+            }
+            .card {
+                padding: 10px;
+            }
+            .card h3 {
+                font-size: 17px;
+            }
+            .map-frame {
+                height: 320px;
+            }
+        }
+        @media (max-width: 380px) {
+            .brand-title { font-size: 14px; }
+            .brand-subtitle { font-size: 11px; }
+            .auth-links a,
+            .auth-links form,
+            .profile-chip,
+            .link-btn {
+                flex-basis: 100%;
+            }
+            .panel h2 {
+                font-size: 20px;
+                padding: 12px;
+            }
+            .card-image {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+        <span class="brand-copy">
+            <span class="brand-title">Lezzeti Keşfet, Rotanı Kur</span>
+            <span class="brand-subtitle">Lezzet Durakları Keşif Rehberi</span>
+        </span>
+    </a>
+    <div class="auth-links">
+        {% if user.is_authenticated %}
+            <span>Merhabalar, {{ user.username }}</span>
+            <a class="profile-chip" href="{% url 'meshur-lezzetler' %}"><i class="bi bi-stars"></i> Lezzetler</a>
+            <a class="profile-chip" href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+            {% if panel_yetkili %}
+                <a class="profile-chip" href="{% url 'raporlar' %}"><i class="bi bi-bar-chart-line-fill"></i> Raporlar</a>
+                <a class="profile-chip" href="/admin/"><i class="bi bi-shield-lock-fill"></i> Yönetim</a>
+            {% endif %}
+            <a class="profile-chip" href="{% url 'profil' %}"><i class="bi bi-person-circle"></i> Profil</a>
+            <form method="post" action="{% url 'cikis' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="link-btn"><i class="bi bi-box-arrow-right"></i> Çıkış Yap</button>
+            </form>
+        {% else %}
+            <a class="profile-chip" href="{% url 'meshur-lezzetler' %}"><i class="bi bi-stars"></i> Lezzetler</a>
+            <a href="{% url 'giris' %}">Giriş Yap</a>
+            <a href="{% url 'kayit' %}">Kayıt Ol</a>
+        {% endif %}
+    </div>
+</header>
+
+<div class="page">
+    <section class="hero">
+        <h1>Lezzeti Keşfet, Rotanı Kur</h1>
+    </section>
+
+    <form id="filters-form" method="get" class="filters-box">
+        <div class="filters-head">
+            <strong>Hızlı Keşif</strong>
+            <input id="q" class="quick-search" type="text" name="q" value="{{ arama_q }}" placeholder="Arama: Mekan, adres..." />
+        </div>
+
+        <div class="filters-layout">
+            <div class="filters-grid">
+                <div class="filter-item">
+                    <label for="kategori">Kategori</label>
+                    <select id="kategori" name="kategori">
+                        <option value="">Tüm Kategoriler</option>
+                        {% for kategori in kategoriler %}
+                            <option value="{{ kategori.id }}" {% if aktif_kategori_id == kategori.id|stringformat:"s" %}selected{% endif %}>{{ kategori.isim }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label for="min_puan">Min. Puan</label>
+                    <select id="min_puan" name="min_puan">
+                        <option value="">Tüm Puanlar</option>
+                        <option value="4.5" {% if aktif_min_puan == "4.5" %}selected{% endif %}>4.5 ve üzeri</option>
+                        <option value="4" {% if aktif_min_puan == "4" %}selected{% endif %}>4.0 ve üzeri</option>
+                        <option value="3" {% if aktif_min_puan == "3" %}selected{% endif %}>3.0 ve üzeri</option>
+                        <option value="2" {% if aktif_min_puan == "2" %}selected{% endif %}>2.0 ve üzeri</option>
+                        <option value="1" {% if aktif_min_puan == "1" %}selected{% endif %}>1.0 ve üzeri</option>
+                    </select>
+                </div>
+
+                <div class="filter-item">
+                    <label for="sirala">Sıralama</label>
+                    <select id="sirala" name="sirala">
+                        <option value="yakina_gore" {% if aktif_sirala == "yakina_gore" %}selected{% endif %}>Önerilen (Konum + Puan)</option>
+                        <option value="puan" {% if aktif_sirala == "puan" %}selected{% endif %}>En yüksek puan</option>
+                        <option value="yeni" {% if aktif_sirala == "yeni" %}selected{% endif %}>En yeni eklenenler</option>
+                        <option value="isim" {% if aktif_sirala == "isim" %}selected{% endif %}>İsme göre (A-Z)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <div class="checkboxes">
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" name="sadece_fotolu" value="1" {% if aktif_sadece_fotolu %}checked{% endif %}> Fotoğraflı
+                    </label>
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" name="sadece_telefonlu" value="1" {% if aktif_sadece_telefonlu %}checked{% endif %}> Telefonu olan
+                    </label>
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" name="sadece_acik" value="1" {% if aktif_sadece_acik %}checked{% endif %}> &#350;u an a&#231;&#305;k
+                    </label>
+                </div>
+
+                <input id="lat-input" type="hidden" name="lat" value="{{ aktif_lat }}">
+                <input id="lng-input" type="hidden" name="lng" value="{{ aktif_lng }}">
+
+                <div class="actions">
+                    <button type="submit" class="filter-submit">Filtrele</button>
+                    <a class="action-btn btn-rotam" href="{% url 'rotam' %}"><i class="bi bi-signpost-split-fill"></i> Rotam</a>
+                    {% if panel_yetkili %}
+                        <a class="action-btn btn-add" href="{% url 'mekan-ekle' %}"><i class="bi bi-plus-circle-fill"></i> Mekan Ekle</a>
+                    {% endif %}
+                </div>
+                <div class="actions">
+                    <a class="clear-btn" href="{% url 'home' %}"><i class="bi bi-x-circle"></i> Filtreleri Temizle</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <main class="layout">
+        <section class="panel">
+            <h2>Yakınındaki Lezzetler</h2>
+            <p class="panel-subtitle">Konumunuza 1 km içindeki mekanlar listeleniyor.</p>
+            <div class="cards-scroll">
+                <div class="cards">
+                    {% for mekan in mekanlar %}
+                        <article class="card" data-href="{% url 'mekan-detay' mekan.id %}">
+                            <div>
+                                <div class="card-head">
+                                    <h3>{{ mekan.isim }}</h3>
+                                    <div class="rating"><i class="bi bi-star-fill"></i> {{ mekan.ortalama_puan|default:"0"|floatformat:1 }}/5</div>
+                                </div>
+                                {% if mekan.uzaklik_km and mekan.uzaklik_km <= 1 %}
+                                    <span class="badge-near">Yakınında</span>
+                                {% endif %}
+                                {% if mekan.uzaklik_km %}
+                                    <p class="meta"><i class="bi bi-geo-alt-fill"></i>{{ mekan.uzaklik_km|floatformat:2 }} km uzakta</p>
+                                {% endif %}
+                                <p class="meta"><i class="bi bi-pin-map-fill"></i>{{ mekan.adres }}</p>
+                                <p class="meta"><i class="bi bi-telephone-fill"></i>{{ mekan.telefon|default:"Telefon bilgisi yok" }}</p>
+                                <p class="meta">
+                                    <i class="bi bi-clock-fill"></i>{{ mekan.calisma_ozeti }}
+                                    {% if mekan.calisma_saati_var %}
+                                        {% if mekan.simdi_acik %}
+                                            <span class="status-pill open">&#350;u an a&#231;&#305;k</span>
+                                        {% else %}
+                                            <span class="status-pill closed">Kapal&#305;</span>
+                                        {% endif %}
+                                    {% endif %}
+                                </p>
+                                <div class="card-actions">
+                                    <a class="card-btn card-btn-detail" href="{% url 'mekan-detay' mekan.id %}">Detayı Gör</a>
+                                    {% if user.is_authenticated %}
+                                        <form method="post" action="{% url 'favori-toggle' mekan.id %}" style="margin:0;flex:1;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="card-btn card-btn-fav {% if mekan.favoride %}is-active{% endif %}" style="width:100%;">
+                                                <i class="bi {% if mekan.favoride %}bi-heart-fill{% else %}bi-heart{% endif %}"></i>
+                                                {% if mekan.favoride %}Favoride{% else %}Favori{% endif %}
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <a class="card-btn card-btn-fav" href="{% url 'giris' %}"><i class="bi bi-heart"></i> Favori</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if mekan.kapak_fotografi %}
+                                <img class="card-image" src="{{ mekan.kapak_fotografi.url }}" alt="{{ mekan.isim }} fotoğrafı">
+                            {% else %}
+                                <div class="card-image card-placeholder" aria-hidden="true">
+                                    <i class="bi bi-shop-window"></i>
+                                    <span>{{ mekan.kategori.isim }}</span>
+                                </div>
+                            {% endif %}
+                        </article>
+                    {% empty %}
+                        <p class="meta">Henüz mekan kaydı yok. Yönetim panelinden ekleyebilirsiniz.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if mekanlar.paginator.num_pages > 1 %}
+                <div class="pagination-wrap">
+                    {% if mekanlar.has_previous %}
+                        <a class="page-btn" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ mekanlar.previous_page_number }}">«</a>
+                    {% endif %}
+
+                    {% for num in mekanlar.paginator.page_range %}
+                        {% if num == mekanlar.number %}
+                            <span class="page-btn active">{{ num }}</span>
+                        {% else %}
+                            <a class="page-btn" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if mekanlar.has_next %}
+                        <a class="page-btn" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ mekanlar.next_page_number }}">»</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="panel">
+            <h2>Keşfet Haritası</h2>
+            <p id="map-status" class="map-status">Konumunuz gösteriliyor: 37.5914, 36.9033</p>
+            <div class="map-wrap">
+                <iframe
+                    id="discover-map"
+                    class="map-frame"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://maps.google.com/maps?q=Kahramanmaras&t=&z=13&ie=UTF8&iwloc=&output=embed">
+                </iframe>
+
+
+                <div class="map-controls">
+                    <button id="zoom-in" class="map-zoom-btn" type="button" aria-label="Yakınlaştır">+</button>
+                    <button id="zoom-out" class="map-zoom-btn" type="button" aria-label="Uzaklaştır">−</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    (function () {
+        var minPuan = document.getElementById("min_puan");
+        var sirala = document.getElementById("sirala");
+        var mapFrame = document.getElementById("discover-map");
+        var mapStatus = document.getElementById("map-status");
+        var filtersForm = document.getElementById("filters-form");
+        var latInput = document.getElementById("lat-input");
+        var lngInput = document.getElementById("lng-input");
+        var zoomIn = document.getElementById("zoom-in");
+        var zoomOut = document.getElementById("zoom-out");
+        var mapZoom = 13;
+        var mapLat = "{{ aktif_lat|default:'' }}";
+        var mapLng = "{{ aktif_lng|default:'' }}";
+
+        function updateMapSrc() {
+            if (!mapFrame) return;
+            var target = mapLat && mapLng ? (mapLat + "," + mapLng) : "Kahramanmaraş";
+            mapFrame.src = "https://maps.google.com/maps?q=" + target + "&z=" + mapZoom + "&output=embed";
+        }
+
+        if (minPuan) {
+            minPuan.addEventListener("change", function () {
+                if (filtersForm) filtersForm.submit();
+            });
+        }
+        if (sirala) {
+            sirala.addEventListener("change", function () {
+                if (filtersForm) filtersForm.submit();
+            });
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    if (latInput && lngInput) {
+                        latInput.value = lat;
+                        lngInput.value = lng;
+                    }
+                    mapLat = lat.toFixed(6);
+                    mapLng = lng.toFixed(6);
+                    mapZoom = 15;
+                    updateMapSrc();
+                    if (mapStatus) {
+                        mapStatus.textContent = "Konumunuz gösteriliyor: " + lat.toFixed(4) + ", " + lng.toFixed(4);
+                    }
+                    if (filtersForm && latInput && lngInput && "{{ konum_aktif|yesno:'true,false' }}" === "false") {
+                        filtersForm.submit();
+                    }
+                },
+                function () {
+                    if (mapStatus) {
+                        mapStatus.textContent = "Konum izni verilmedi. Varsayılan harita görüntüleniyor.";
+                    }
+                },
+                { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+            );
+        }
+
+        if (zoomIn) {
+            zoomIn.addEventListener("click", function () {
+                mapZoom = Math.min(20, mapZoom + 1);
+                updateMapSrc();
+            });
+        }
+        if (zoomOut) {
+            zoomOut.addEventListener("click", function () {
+                mapZoom = Math.max(3, mapZoom - 1);
+                updateMapSrc();
+            });
+        }
+
+        document.querySelectorAll(".card[data-href]").forEach(function (card) {
+            card.addEventListener("click", function (event) {
+                if (event.target.closest("a,button,form,input,label,select,textarea")) {
+                    return;
+                }
+                window.location.href = card.getAttribute("data-href");
+            });
+        });
+    })();
+</script>
+{% include "partials/footer.html" %}
+</body>
+</html>

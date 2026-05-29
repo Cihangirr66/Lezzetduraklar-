@@ -1,0 +1,253 @@
+<!doctype html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>En Meşhur Lezzetler - Lezzet Durakları</title>
+    {% include "partials/theme_head.html" %}
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --line: #e5e7eb;
+            --line-strong: #cbd5e1;
+            --text: #111827;
+            --muted: #64748b;
+            --accent: #ea580c;
+            --accent-soft: #fff7ed;
+            --shadow: 0 12px 28px rgba(15, 23, 42, .08);
+        }
+        [data-theme="dark"] {
+            --bg: #0f1115;
+            --surface: #171b23;
+            --surface-soft: #11151d;
+            --line: #2a2f3a;
+            --line-strong: #3a4252;
+            --text: #f3f4f6;
+            --muted: #aeb7c5;
+            --accent: #fdba74;
+            --accent-soft: rgba(249, 115, 22, .12);
+            --shadow: 0 18px 42px rgba(0, 0, 0, .38);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", sans-serif;
+        }
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            min-height: 66px;
+            padding: 10px 18px;
+            border-bottom: 1px solid var(--line);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .brand,
+        .nav-actions {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 900;
+            min-width: 0;
+        }
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            object-fit: cover;
+            border: 1px solid var(--line);
+        }
+        .nav-actions {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .btn {
+            min-height: 40px;
+            border-radius: 8px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--text);
+            padding: 0 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            border-color: #ea580c;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: #fff;
+        }
+        .page {
+            width: min(1040px, calc(100% - 28px));
+            margin: 20px auto 28px;
+        }
+        .intro {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+        .eyebrow {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.05;
+            letter-spacing: 0;
+        }
+        .intro p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 620px;
+        }
+        .city-chip {
+            min-height: 34px;
+            border-radius: 999px;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            color: var(--text);
+            padding: 0 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+        .flavors {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .flavor-card {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--surface);
+            box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+            padding: 12px;
+            min-width: 0;
+        }
+        .flavor-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .flavor-card h2 {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.2;
+        }
+        .flavor-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        .flavor-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+        .flavor-city {
+            margin-top: 10px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+        @media (max-width: 900px) {
+            .flavors {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 640px) {
+            .topbar,
+            .intro {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .nav-actions,
+            .btn,
+            .city-chip {
+                width: 100%;
+            }
+            .flavors {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include "partials/theme_toggle.html" %}
+<header class="topbar">
+    <a class="brand" href="{% url 'home' %}" aria-label="Ana Sayfa">
+        <img class="brand-logo" src="{% static 'images/lezzet-duraklari-logo.png' %}" alt="Lezzet Durakları logosu">
+        <span>Lezzet Durakları</span>
+    </a>
+    <div class="nav-actions">
+        <a class="btn" href="{% url 'home' %}"><i class="bi bi-compass"></i> Keşfet</a>
+        <a class="btn" href="{% url 'rotam' %}"><i class="bi bi-signpost-split"></i> Rotam</a>
+        {% if user.is_authenticated %}
+            <a class="btn" href="{% url 'favoriler' %}"><i class="bi bi-heart-fill"></i> Favoriler</a>
+        {% endif %}
+    </div>
+</header>
+
+<main class="page">
+    <section class="intro">
+        <div>
+            <p class="eyebrow">Şehrin imza tatları</p>
+            <h1>En Meşhur Lezzetler</h1>
+            <p>Kahramanmaraş mutfağını tanıtan, şehirle özdeşleşmiş lezzetleri kısa ve net bir rehber olarak keşfet.</p>
+        </div>
+        <span class="city-chip"><i class="bi bi-geo-fill"></i> Kahramanmaraş</span>
+    </section>
+
+    <section class="flavors" aria-label="Kahramanmaraş'ın meşhur lezzetleri">
+        {% for lezzet in lezzetler %}
+            <article class="flavor-card">
+                <div class="flavor-top">
+                    <h2>{{ lezzet.isim }}</h2>
+                    <span class="flavor-icon"><i class="bi {{ lezzet.ikon }}"></i></span>
+                </div>
+                <p>{{ lezzet.aciklama }}</p>
+                <div class="flavor-city">Özdeşleştiği şehir: {{ lezzet.sehir }}</div>
+            </article>
+        {% endfor %}
+    </section>
+</main>
+{% include "partials/footer.html" %}
+</body>
+</html>
