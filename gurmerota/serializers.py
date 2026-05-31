@@ -16,14 +16,46 @@ class MekanSerializer(serializers.ModelSerializer):
     kategori_adi = serializers.CharField(source="kategori.isim", read_only=True)
     google_maps_url = serializers.ReadOnlyField()
     ortalama_puan = serializers.ReadOnlyField()
+    calisma_ozeti = serializers.ReadOnlyField()
+    kapak_url = serializers.SerializerMethodField()
+    fotograf_urls = serializers.SerializerMethodField()
+    simdi_acik = serializers.SerializerMethodField()
+    yorum_sayisi = serializers.SerializerMethodField()
 
     class Meta:
         model = Mekan
         fields = "__all__"
 
+    def _absolute_url(self, path):
+        if not path:
+            return ""
+        request = self.context.get("request")
+        if request:
+            return request.build_absolute_uri(path)
+        return path
+
+    def get_kapak_url(self, obj):
+        if not obj.kapak_fotografi:
+            return ""
+        return self._absolute_url(obj.kapak_fotografi.url)
+
+    def get_fotograf_urls(self, obj):
+        return [
+            self._absolute_url(foto.image.url)
+            for foto in obj.fotograflar.all()
+            if foto.image
+        ]
+
+    def get_simdi_acik(self, obj):
+        return obj.bugun_acik_mi()
+
+    def get_yorum_sayisi(self, obj):
+        return obj.yorumlar.count()
+
 
 class YorumSerializer(serializers.ModelSerializer):
     kullanici_adi = serializers.CharField(source="kullanici.username", read_only=True)
+    mekan_adi = serializers.CharField(source="mekan.isim", read_only=True)
 
     class Meta:
         model = Yorum

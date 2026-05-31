@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
         'DJANGO_ALLOWED_HOSTS',
-        os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost'),
+        os.getenv('ALLOWED_HOSTS', '192.168.1.57,127.0.0.1,localhost,*'),
     ).split(',')
     if host.strip()
 ]
@@ -198,7 +198,43 @@ JAZZMIN_SETTINGS = {
         {'model': 'gurmerota.Mekan'},
         {'app': 'gurmerota'},
     ],
+    'custom_links': {
+        'gurmerota': [
+            {
+                'name': 'Yeni Mekan',
+                'url': 'admin:gurmerota_mekan_add',
+                'icon': 'fas fa-plus-circle',
+            },
+            {
+                'name': 'Raporlar',
+                'url': 'raporlar',
+                'icon': 'fas fa-chart-pie',
+            },
+        ],
+    },
+    'icons': {
+        'auth': 'fas fa-users-cog',
+        'auth.User': 'fas fa-user-shield',
+        'gurmerota': 'fas fa-utensils',
+        'gurmerota.Kategori': 'fas fa-tags',
+        'gurmerota.Mekan': 'fas fa-map-marker-alt',
+        'gurmerota.MekanFoto': 'fas fa-images',
+        'gurmerota.Yorum': 'fas fa-star-half-alt',
+        'gurmerota.Favori': 'fas fa-heart',
+        'authtoken.Token': 'fas fa-key',
+    },
+    'order_with_respect_to': [
+        'gurmerota.Mekan',
+        'gurmerota.Kategori',
+        'gurmerota.MekanFoto',
+        'gurmerota.Yorum',
+        'gurmerota.Favori',
+        'auth.User',
+        'authtoken.Token',
+    ],
     'custom_css': 'admin/custom_admin.css',
+    'related_modal_active': True,
+    'navigation_expanded': True,
     'show_ui_builder': False,
     'show_theme_chooser': True,
     'changeform_format': 'horizontal_tabs',

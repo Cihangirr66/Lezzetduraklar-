@@ -338,13 +338,25 @@ class KategoriDetailView(generics.RetrieveAPIView):
 
 class MekanListView(generics.ListAPIView):
     serializer_class = MekanSerializer
-    queryset = Mekan.objects.select_related("kategori").all()
+    queryset = Mekan.objects.select_related("kategori").prefetch_related("fotograflar", "yorumlar").all()
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        q = (self.request.query_params.get("q") or "").strip()
+        kategori = (self.request.query_params.get("kategori") or "").strip()
         lat = self.request.query_params.get("lat")
         lng = self.request.query_params.get("lng")
         radius = self.request.query_params.get("radius")
+
+        if q:
+            queryset = queryset.filter(
+                Q(isim__icontains=q)
+                | Q(adres__icontains=q)
+                | Q(aciklama__icontains=q)
+                | Q(kategori__isim__icontains=q)
+            )
+        if kategori:
+            queryset = queryset.filter(Q(kategori_id=kategori) | Q(kategori__isim__iexact=kategori))
 
         if not (lat and lng and radius):
             return queryset
@@ -371,7 +383,7 @@ class MekanListView(generics.ListAPIView):
 
 
 class MekanDetailView(generics.RetrieveAPIView):
-    queryset = Mekan.objects.select_related("kategori").all()
+    queryset = Mekan.objects.select_related("kategori").prefetch_related("fotograflar", "yorumlar").all()
     serializer_class = MekanSerializer
 
 
@@ -385,6 +397,10 @@ class YorumListView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         queryset = Yorum.objects.select_related("mekan", "kullanici").all()
+        if self.request.query_params.get("mine") == "1":
+            if not self.request.user.is_authenticated:
+                return queryset.none()
+            queryset = queryset.filter(kullanici=self.request.user)
         mekan = self.request.query_params.get("mekan") or self.request.query_params.get("mekan_id")
         if mekan:
             queryset = queryset.filter(mekan_id=mekan)

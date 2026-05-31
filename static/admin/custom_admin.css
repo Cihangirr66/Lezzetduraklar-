@@ -2,11 +2,13 @@
     --ld-bg: #0f1115;
     --ld-panel: #171b22;
     --ld-panel-2: #202632;
+    --ld-panel-3: #121722;
     --ld-border: #313948;
     --ld-text: #f4f6f8;
     --ld-muted: #aeb7c5;
     --ld-orange: #ff8f00;
     --ld-orange-2: #ff5f00;
+    --ld-blue: #58a6ff;
     --ld-green: #3ddc84;
     --ld-red: #ef4444;
     --ld-shadow: 0 16px 34px rgba(0, 0, 0, .34);
@@ -40,6 +42,60 @@ body,
 .brand-link .brand-text {
     font-weight: 900 !important;
     letter-spacing: 0;
+}
+
+.custom-branding {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+.custom-branding h1 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.15;
+    font-weight: 900;
+}
+
+.custom-branding h1 a {
+    color: var(--ld-text) !important;
+    text-decoration: none;
+}
+
+.custom-branding p {
+    margin: 4px 0 0;
+    color: var(--ld-muted);
+    font-size: 13px;
+}
+
+.admin-quick-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-quick-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 6px 12px;
+    border: 1px solid rgba(255, 143, 0, .34);
+    border-radius: 8px;
+    background: rgba(255, 143, 0, .10);
+    color: #ffd48a !important;
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+.admin-quick-links a:hover {
+    background: var(--ld-orange);
+    color: #111 !important;
 }
 
 .main-header.navbar {
@@ -83,7 +139,7 @@ body,
 .results,
 .change-list .filtered {
     border: 1px solid var(--ld-border) !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     background: var(--ld-panel) !important;
     box-shadow: var(--ld-shadow) !important;
 }
@@ -120,6 +176,10 @@ table td,
 #changelist table tbody th {
     border-color: var(--ld-border) !important;
     vertical-align: middle;
+}
+
+#changelist table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, .018) !important;
 }
 
 #changelist table tbody tr:hover {
@@ -176,6 +236,51 @@ a.button:hover {
     font-weight: 800 !important;
 }
 
+.form-row,
+.aligned .form-row {
+    border-color: rgba(255, 255, 255, .06) !important;
+}
+
+.checkbox-row,
+.aligned .form-row:has(.checkboxselectmultiple) {
+    align-items: flex-start;
+}
+
+.checkboxselectmultiple,
+ul[id$="calisma_gunleri"] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+    gap: 8px;
+    max-width: 760px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.checkboxselectmultiple li,
+ul[id$="calisma_gunleri"] li {
+    margin: 0 !important;
+}
+
+.checkboxselectmultiple label,
+ul[id$="calisma_gunleri"] label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 7px 10px;
+    border: 1px solid var(--ld-border);
+    border-radius: 8px;
+    background: var(--ld-panel-3);
+    color: var(--ld-text);
+    font-weight: 700;
+}
+
+.checkboxselectmultiple input,
+ul[id$="calisma_gunleri"] input {
+    accent-color: var(--ld-orange);
+}
+
 #changelist-filter {
     border-left: 1px solid var(--ld-border) !important;
     background: var(--ld-panel) !important;
@@ -228,6 +333,7 @@ a.button:hover {
 
 .admin-rating,
 .admin-pill,
+.admin-counter,
 .admin-map-btn,
 .admin-empty {
     display: inline-flex;
@@ -254,11 +360,24 @@ a.button:hover {
     color: #9ff0c4;
 }
 
+.admin-pill.danger {
+    border: 1px solid rgba(239, 68, 68, .45);
+    background: rgba(239, 68, 68, .12);
+    color: #fca5a5;
+}
+
 .admin-pill.muted,
 .admin-empty {
     border: 1px solid var(--ld-border);
     background: #11151d;
     color: var(--ld-muted);
+}
+
+.admin-counter {
+    min-width: 34px;
+    border: 1px solid rgba(88, 166, 255, .38);
+    background: rgba(88, 166, 255, .10);
+    color: #b9d9ff;
 }
 
 .admin-map-btn {
@@ -296,6 +415,24 @@ a.button:hover {
 @media (max-width: 768px) {
     .main-header.navbar {
         min-height: 56px;
+    }
+
+    .custom-branding {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .custom-branding h1 {
+        font-size: 17px;
+    }
+
+    .admin-quick-links {
+        width: 100%;
+    }
+
+    .admin-quick-links a {
+        flex: 1 1 auto;
     }
 
     .admin-thumb {
