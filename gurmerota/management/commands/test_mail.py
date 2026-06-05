@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from smtplib import SMTPException
 
 from django.conf import settings

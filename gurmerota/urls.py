@@ -1,10 +1,9 @@
+# -*- coding: utf-8 -*-
 from django.urls import path
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
     PasswordResetCompleteView,
-    PasswordResetConfirmView,
-    PasswordResetDoneView,
 )
 
 from .forms import GirisFormu
@@ -30,6 +29,8 @@ from .views import (
     profil,
     raporlar,
     rotam,
+    sifre_sifirlama_gonderildi,
+    SifreSifirlamaOnayView,
     SifreSifirlamaView,
     YorumListView,
 )
@@ -50,12 +51,12 @@ urlpatterns = [
     ),
     path(
         "sifre-sifirla/gonderildi/",
-        PasswordResetDoneView.as_view(template_name="registration/password_reset_done.html"),
+        sifre_sifirlama_gonderildi,
         name="password_reset_done",
     ),
     path(
         "sifre-sifirla/<uidb64>/<token>/",
-        PasswordResetConfirmView.as_view(template_name="registration/password_reset_confirm.html"),
+        SifreSifirlamaOnayView.as_view(),
         name="password_reset_confirm",
     ),
     path(

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 from django.conf import settings
@@ -5,6 +6,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, UserCreationForm
 from django.contrib.auth.models import User
 
+from .auth_utils import authenticate_with_firebase_fallback
 from .models import Mekan, Yorum
 from .firebase_sync import create_or_update_firebase_user
 
@@ -43,12 +45,27 @@ class KayitFormu(UserCreationForm):
 
 
 class GirisFormu(AuthenticationForm):
-    username = forms.CharField(label="Kullanıcı adı")
+    username = forms.CharField(label="Kullanıcı adı veya e-posta")
     password = forms.CharField(label="Şifre", widget=forms.PasswordInput)
     error_messages = {
         "invalid_login": "Kullanıcı adı veya şifre hatalı.",
         "inactive": "Bu hesap aktif değil.",
     }
+
+    def clean(self):
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get("password")
+
+        if username and password:
+            self.user_cache = authenticate_with_firebase_fallback(username, password)
+            if self.user_cache is None:
+                raise forms.ValidationError(
+                    self.error_messages["invalid_login"],
+                    code="invalid_login",
+                )
+            self.confirm_login_allowed(self.user_cache)
+
+        return self.cleaned_data
 
 
 class SifreSifirlamaFormu(PasswordResetForm):
@@ -61,19 +78,9 @@ class SifreSifirlamaFormu(PasswordResetForm):
 
         if not User.objects.filter(email__iexact=email, is_active=True).exists():
             raise forms.ValidationError("Bu e-posta adresiyle kayıtlı aktif hesap bulunamadı.")
-
-        smtp_backend = settings.EMAIL_BACKEND.endswith("smtp.EmailBackend")
-        placeholder_user = settings.EMAIL_HOST_USER.endswith("@example.com")
-        placeholder_password = settings.EMAIL_HOST_PASSWORD in ("", "your-app-password")
-        if smtp_backend and (
-            not settings.EMAIL_HOST
-            or not settings.EMAIL_HOST_USER
-            or not settings.EMAIL_HOST_PASSWORD
-            or placeholder_user
-            or placeholder_password
-        ):
+        if not getattr(settings, "FIREBASE_AUTH_ENABLED", False):
             raise forms.ValidationError(
-                "E-posta gönderimi için SMTP ayarları tamamlanmamış. .env dosyasındaki EMAIL_HOST_USER ve EMAIL_HOST_PASSWORD değerlerini gerçek bilgilerle güncelleyin."
+                "Firebase Auth aktif değil. `.env` dosyasında `FIREBASE_AUTH_ENABLED=True` yapın."
             )
 
         return email
@@ -121,7 +128,7 @@ class MekanFormu(forms.ModelForm):
                 f"https://maps.google.com/?q={self.instance.latitude},{self.instance.longitude}"
             )
             self.fields["konum_linki"].help_text = (
-                "Bos birakirsaniz mevcut koordinatlar korunur."
+                "Boş bırakırsanız mevcut koordinatlar korunur."
             )
         else:
             self.fields["konum_linki"].required = True
@@ -157,11 +164,11 @@ class MekanFormu(forms.ModelForm):
         calisma_gunleri = cleaned_data.get("calisma_gunleri") or []
         if bool(calisma_baslangic) != bool(calisma_bitis):
             raise forms.ValidationError(
-                "Calisma saati icin acilis ve kapanis birlikte girilmeli."
+                "Çalışma saati için açılış ve kapanış birlikte girilmeli."
             )
         if calisma_baslangic and calisma_bitis and not calisma_gunleri:
             raise forms.ValidationError(
-                "Calisma saati girildiginde en az bir calisma gunu secin."
+                "Çalışma saati girildiğinde en az bir çalışma günü seçin."
             )
         cleaned_data["calisma_gunleri"] = ",".join(calisma_gunleri)
         parsed_lat, parsed_lng = self._extract_lat_lng_from_link(konum_linki)

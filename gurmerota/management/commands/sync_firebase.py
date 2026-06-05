@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
@@ -10,18 +11,18 @@ from gurmerota.models import Favori, Kategori, Mekan, MekanFoto, Yorum
 
 
 class Command(BaseCommand):
-    help = 'SQLite/Django verilerini Firebase Firestore ve Firebase Auth tarafina aktarir.'
+    help = 'SQLite/Django verilerini Firebase Firestore ve Firebase Auth tarafına aktarır.'
 
     def add_arguments(self, parser):
         parser.add_argument(
             '--skip-auth',
             action='store_true',
-            help='Kullanicilari Firebase Auth tarafina aktarma.',
+            help='Kullanıcıları Firebase Auth tarafına aktarma.',
         )
         parser.add_argument(
             '--ignore-errors',
             action='store_true',
-            help='Firestore/Auth hatasinda devam et.',
+            help='Firestore/Auth hatasında devam et.',
         )
 
     def handle(self, *args, **options):
@@ -35,7 +36,7 @@ class Command(BaseCommand):
         )
 
         if not options['skip_auth'] and settings.FIREBASE_AUTH_ENABLED:
-            self.stdout.write('Firebase Auth kullanicilari aktariliyor...')
+            self.stdout.write('Firebase Auth kullanıcıları aktarılıyor...')
             for user in User.objects.all():
                 self._run(
                     lambda user=user: create_or_update_firebase_user(user),
@@ -43,11 +44,11 @@ class Command(BaseCommand):
                     f'user:{user.pk}',
                 )
         elif not options['skip_auth']:
-            self.stdout.write('Firebase Auth kapali: FIREBASE_AUTH_ENABLED=True yapinca aktarilir.')
+            self.stdout.write('Firebase Auth kapalı: `FIREBASE_AUTH_ENABLED=True` yapınca aktarılır.')
 
         for label, queryset in models:
             total = queryset.count()
-            self.stdout.write(f'{label}: {total} kayit aktariliyor...')
+            self.stdout.write(f'{label}: {total} kayıt aktarılıyor...')
             synced = 0
             for instance in queryset.iterator():
                 self._run(
@@ -58,7 +59,7 @@ class Command(BaseCommand):
                 synced += 1
             self.stdout.write(self.style.SUCCESS(f'{label}: {synced}/{total} tamam'))
 
-        self.stdout.write(self.style.SUCCESS('Firebase aktarimi tamamlandi.'))
+        self.stdout.write(self.style.SUCCESS('Firebase aktarımı tamamlandı.'))
 
     def _run(self, func, ignore_errors, label):
         try:
@@ -66,4 +67,4 @@ class Command(BaseCommand):
         except Exception as exc:
             if not ignore_errors:
                 raise
-            self.stderr.write(self.style.WARNING(f'{label} atlandi: {exc}'))
+            self.stderr.write(self.style.WARNING(f'{label} atlandı: {exc}'))

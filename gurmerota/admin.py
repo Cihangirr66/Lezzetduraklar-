@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.models import User
@@ -117,14 +118,14 @@ class FotografDurumuFilter(admin.SimpleListFilter):
 
 
 class CalismaSaatiDurumuFilter(admin.SimpleListFilter):
-    title = "Calisma saati"
+    title = "Çalışma saati"
     parameter_name = "calisma_saati"
 
     def lookups(self, request, model_admin):
         return (
-            ("var", "Calisma saati var"),
-            ("yok", "Calisma saati yok"),
-            ("acik", "Su an acik"),
+            ("var", "Çalışma saati var"),
+            ("yok", "Çalışma saati yok"),
+            ("acik", "Şu an açık"),
         )
 
     def queryset(self, request, queryset):
@@ -298,7 +299,7 @@ class MekanAdmin(admin.ModelAdmin):
             },
         ),
         (
-            "Calisma Saatleri",
+            "Çalışma Saatleri",
             {
                 "fields": (
                     "calisma_baslangic",
@@ -494,5 +495,4 @@ class MekanFotoAdmin(admin.ModelAdmin):
         return "Fotoğraf yok."
 
     foto_onizleme_buyuk.short_description = "Önizleme"
-
 

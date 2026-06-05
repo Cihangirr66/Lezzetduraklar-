@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, time
+from unittest.mock import patch
+
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.core.cache import cache
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.encoding import force_bytes
 from urllib.parse import parse_qs, urlparse
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode
 
 from .forms import MekanFormu
 from .models import Favori, Kategori, Mekan
+from lezzetduraklari.firebase import FirebaseTransportError
 
 
 class MekanGoogleMapsUrlTests(TestCase):
@@ -137,3 +145,143 @@ class NavigationAndFavoriteTests(TestCase):
         self.assertTrue(
             Favori.objects.filter(kullanici=self.user, mekan=self.mekan).exists()
         )
+
+
+@override_settings(
+    ALLOWED_HOSTS=["testserver", "localhost", "127.0.0.1"],
+    FIREBASE_SYNC_ENABLED=False,
+    FIREBASE_AUTH_ENABLED=True,
+    FIREBASE_WEB_API_KEY="test-web-api-key",
+)
+class PasswordResetFlowTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="reset-user",
+            email="reset-user@example.com",
+            password="old-pass-123",
+        )
+
+    @patch("gurmerota.views.send_password_reset_email")
+    def test_password_reset_sends_email_with_firebase(self, send_password_reset_email_mock):
+        response = self.client.post(
+            reverse("password_reset"),
+            {"email": self.user.email},
+        )
+
+        self.assertRedirects(response, reverse("password_reset_done"))
+        send_password_reset_email_mock.assert_called_once_with(self.user.email)
+
+    @override_settings(FIREBASE_WEB_API_KEY="")
+    @patch("gurmerota.views.generate_password_reset_link")
+    def test_password_reset_falls_back_to_generated_link_when_api_key_missing(
+        self,
+        generate_password_reset_link_mock,
+    ):
+        generate_password_reset_link_mock.return_value = "https://example.com/reset-link"
+
+        response = self.client.post(
+            reverse("password_reset"),
+            {"email": self.user.email},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "https://example.com/reset-link")
+        generate_password_reset_link_mock.assert_called_once_with(self.user.email)
+
+    @patch("gurmerota.views.send_password_reset_email")
+    def test_password_reset_falls_back_to_local_link_when_firebase_request_fails(
+        self,
+        send_password_reset_email_mock,
+    ):
+        send_password_reset_email_mock.side_effect = Exception("ssl verify failed")
+
+        response = self.client.post(
+            reverse("password_reset"),
+            {"email": self.user.email},
+            follow=True,
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "yerel şifre sıfırlama bağlantısı")
+        self.assertContains(response, "/sifre-sifirla/")
+
+    @patch("gurmerota.views.create_or_update_firebase_user")
+    def test_password_reset_confirm_updates_firebase_password(self, firebase_sync_mock):
+        uidb64 = urlsafe_base64_encode(force_bytes(self.user.pk))
+        token = default_token_generator.make_token(self.user)
+        confirm_url = reverse("password_reset_confirm", args=[uidb64, token])
+
+        redirect_response = self.client.get(confirm_url)
+        self.assertEqual(redirect_response.status_code, 302)
+
+        response = self.client.post(
+            redirect_response.headers["Location"],
+            {
+                "new_password1": "new-pass-456",
+                "new_password2": "new-pass-456",
+            },
+        )
+
+        self.assertRedirects(response, reverse("password_reset_complete"))
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password("new-pass-456"))
+        firebase_sync_mock.assert_called_once_with(self.user, "new-pass-456")
+
+
+@override_settings(
+    FIREBASE_SYNC_ENABLED=False,
+    FIREBASE_AUTH_ENABLED=True,
+    FIREBASE_WEB_API_KEY="test-web-api-key",
+)
+class FirebaseLoginFallbackTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(
+            username="firebase-user",
+            email="firebase-user@example.com",
+            password="old-pass-123",
+        )
+
+    @patch("gurmerota.auth_utils.verify_email_password")
+    def test_web_login_updates_local_password_from_firebase(self, verify_email_password_mock):
+        response = self.client.post(
+            reverse("giris"),
+            {"username": self.user.username, "password": "new-pass-789"},
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.headers["Location"], reverse("home"))
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password("new-pass-789"))
+        verify_email_password_mock.assert_called_once_with(self.user.email, "new-pass-789")
+
+    @patch("gurmerota.auth_utils.verify_email_password")
+    def test_api_login_updates_local_password_from_firebase(self, verify_email_password_mock):
+        response = self.client.post(
+            reverse("api-giris"),
+            {"username": self.user.username, "password": "new-pass-999"},
+            content_type="application/json",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password("new-pass-999"))
+        verify_email_password_mock.assert_called_once_with(self.user.email, "new-pass-999")
+
+    @patch("gurmerota.auth_utils.verify_email_password")
+    def test_transport_failure_temporarily_disables_firebase_fallback(self, verify_email_password_mock):
+        verify_email_password_mock.side_effect = FirebaseTransportError("ssl verify failed")
+
+        first_response = self.client.post(
+            reverse("giris"),
+            {"username": self.user.username, "password": "new-pass-000"},
+        )
+        second_response = self.client.post(
+            reverse("giris"),
+            {"username": self.user.username, "password": "new-pass-000"},
+        )
+
+        self.assertEqual(first_response.status_code, 200)
+        self.assertEqual(second_response.status_code, 200)
+        self.assertEqual(verify_email_password_mock.call_count, 1)

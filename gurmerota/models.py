@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from urllib.parse import urlencode
 
 from django.db import models
@@ -43,14 +44,14 @@ class Mekan(models.Model):
     longitude = models.DecimalField("boylam", max_digits=9, decimal_places=6)
     telefon = models.CharField("telefon", max_length=30, blank=True)
     web_sitesi = models.URLField("web sitesi", blank=True)
-    calisma_baslangic = models.TimeField("acilis saati", null=True, blank=True)
-    calisma_bitis = models.TimeField("kapanis saati", null=True, blank=True)
+    calisma_baslangic = models.TimeField("açılış saati", null=True, blank=True)
+    calisma_bitis = models.TimeField("kapanış saati", null=True, blank=True)
     calisma_gunleri = models.CharField(
-        "calisma gunleri",
+        "çalışma günleri",
         max_length=20,
         blank=True,
         default="0,1,2,3,4,5,6",
-        help_text="0=Pazartesi, 6=Pazar. Virgulle ayirin.",
+        help_text="0=Pazartesi, 6=Pazar. Virgülle ayırın.",
     )
     kapak_fotografi = models.ImageField("kapak fotoğrafı", upload_to="mekan_kapaklari/", blank=True)
     olusturulma_tarihi = models.DateTimeField("oluşturulma tarihi", auto_now_add=True)
@@ -83,7 +84,7 @@ class Mekan(models.Model):
     @property
     def calisma_ozeti(self):
         if not self.calisma_saati_var:
-            return "\u00c7al\u0131\u015fma saati eklenmemi\u015f"
+            return "Çalışma saati eklenmemiş"
         return f"{self.calisma_baslangic:%H:%M} - {self.calisma_bitis:%H:%M}"
 
     def bugun_acik_mi(self, now=None):
@@ -195,5 +196,3 @@ class Favori(models.Model):
 
     def __str__(self):
         return f"{self.kullanici.username} - {self.mekan.isim}"
-
-

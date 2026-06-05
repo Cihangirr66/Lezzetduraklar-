@@ -1,22 +1,25 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, time, timedelta
 from math import asin, cos, radians, sin, sqrt
 import random
-from smtplib import SMTPException
-from urllib.parse import quote, urlparse
+from urllib.parse import quote
 
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
-from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.urls import reverse
+from django.utils.encoding import force_bytes
 from django.utils import timezone
-from django.utils.http import url_has_allowed_host_and_scheme
+from django.utils.http import url_has_allowed_host_and_scheme, urlsafe_base64_encode
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Avg, Count, Q
 from django.db.models.functions import TruncDate
+from django.views.generic.edit import FormView
 from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
 from rest_framework.authtoken.models import Token
@@ -29,6 +32,13 @@ from .forms import (
     MekanFormu,
     SifreSifirlamaFormu,
     YorumFormu,
+)
+from .auth_utils import authenticate_with_firebase_fallback
+from .firebase_sync import create_or_update_firebase_user
+from lezzetduraklari.firebase import (
+    FirebaseIdentityError,
+    generate_password_reset_link,
+    send_password_reset_email,
 )
 from .models import Favori, Kategori, Mekan, Yorum
 from .serializers import (
@@ -47,36 +57,83 @@ def kullanici_panel_yetkili(user):
     )
 
 
-class SifreSifirlamaView(PasswordResetView):
+_TURKISH_SORT_MAP = str.maketrans(
+    {
+        "ç": "c{",
+        "ğ": "g{",
+        "ı": "h{",
+        "i": "h|",
+        "ö": "o{",
+        "ş": "s{",
+        "ü": "u{",
+    }
+)
+
+
+def turkish_sort_key(value):
+    normalized = (value or "").replace("I", "ı").replace("İ", "i").lower()
+    return normalized.translate(_TURKISH_SORT_MAP)
+
+
+def _build_local_password_reset_link(user):
+    uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+    token = default_token_generator.make_token(user)
+    path = reverse("password_reset_confirm", args=[uidb64, token])
+    return f"{settings.PUBLIC_SITE_URL}{path}"
+
+
+class SifreSifirlamaView(FormView):
     form_class = SifreSifirlamaFormu
     template_name = "registration/password_reset_form.html"
-    email_template_name = "registration/password_reset_email.html"
-    subject_template_name = "registration/password_reset_subject.txt"
+    success_url = "/sifre-sifirla/gonderildi/"
 
     def form_valid(self, form):
-        site_url = urlparse(settings.PUBLIC_SITE_URL)
-        domain_override = site_url.netloc or self.request.get_host()
-        use_https = site_url.scheme == "https" if site_url.scheme else self.request.is_secure()
-        opts = {
-            "use_https": use_https,
-            "token_generator": self.token_generator,
-            "from_email": self.from_email,
-            "email_template_name": self.email_template_name,
-            "subject_template_name": self.subject_template_name,
-            "request": self.request,
-            "html_email_template_name": self.html_email_template_name,
-            "extra_email_context": self.extra_email_context,
-            "domain_override": domain_override,
-        }
+        self.request.session.pop("password_reset_fallback_link", None)
+        self.request.session.pop("password_reset_delivery_mode", None)
+        email = form.cleaned_data["email"]
+        user = User.objects.filter(email__iexact=email, is_active=True).first()
         try:
-            form.save(**opts)
-            return super(PasswordResetView, self).form_valid(form)
-        except (SMTPException, OSError):
-            form.add_error(
-                None,
-                "E-posta gönderilemedi. SMTP kullanıcı adı, uygulama şifresi veya mail sağlayıcı ayarlarını kontrol edin.",
-            )
-            return self.form_invalid(form)
+            if getattr(settings, "FIREBASE_WEB_API_KEY", ""):
+                send_password_reset_email(email)
+                self.request.session["password_reset_delivery_mode"] = "firebase-email"
+            else:
+                self.request.session["password_reset_fallback_link"] = generate_password_reset_link(email)
+                self.request.session["password_reset_delivery_mode"] = "firebase-link"
+        except Exception:
+            if user:
+                self.request.session["password_reset_fallback_link"] = _build_local_password_reset_link(user)
+                self.request.session["password_reset_delivery_mode"] = "django-link"
+            else:
+                form.add_error(
+                    None,
+                    "Şifre sıfırlama bağlantısı oluşturulamadı. Lütfen daha sonra tekrar deneyin.",
+                )
+                return self.form_invalid(form)
+        self.request.session.modified = True
+        return super().form_valid(form)
+
+
+def sifre_sifirlama_gonderildi(request):
+    fallback_link = request.session.pop("password_reset_fallback_link", "")
+    delivery_mode = request.session.pop("password_reset_delivery_mode", "")
+    request.session.modified = True
+    return render(
+        request,
+        "registration/password_reset_done.html",
+        {
+            "password_reset_fallback_link": fallback_link,
+            "password_reset_delivery_mode": delivery_mode,
+        },
+    )
+
+
+class SifreSifirlamaOnayView(PasswordResetConfirmView):
+    template_name = "registration/password_reset_confirm.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        create_or_update_firebase_user(self.user, form.cleaned_data.get("new_password1"))
+        return response
 
 
 def haversine_distance_km(lat1, lng1, lat2, lng2):
@@ -431,7 +488,7 @@ class GirisApiView(APIView):
     def post(self, request):
         username = request.data.get("username", "").strip()
         password = request.data.get("password", "")
-        user = authenticate(username=username, password=password)
+        user = authenticate_with_firebase_fallback(username, password)
         if not user:
             raise ValidationError({"detail": "Kullanıcı adı veya şifre hatalı."})
         token, _ = Token.objects.get_or_create(user=user)
@@ -536,7 +593,7 @@ def home(request):
     if sirala == "puan":
         mekan_listesi.sort(key=lambda m: float(m.ortalama_puan or 0), reverse=True)
     elif sirala == "isim":
-        mekan_listesi.sort(key=lambda m: m.isim.lower())
+        mekan_listesi.sort(key=lambda m: turkish_sort_key(m.isim))
     elif sirala == "yeni":
         mekan_listesi.sort(key=lambda m: m.olusturulma_tarihi, reverse=True)
     else:
@@ -902,7 +959,7 @@ def raporlar(request):
 
     kalite_oncelikli = sorted(
         tum_mekanlar,
-        key=lambda mekan: (-kalite_skoru(mekan), mekan.isim.lower()),
+        key=lambda mekan: (-kalite_skoru(mekan), turkish_sort_key(mekan.isim)),
     )[:8]
 
     context = {

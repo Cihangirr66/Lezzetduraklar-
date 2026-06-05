@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from pathlib import Path
 
@@ -101,6 +102,7 @@ LANGUAGE_CODE = 'tr'
 TIME_ZONE = os.getenv('TIME_ZONE', 'Europe/Istanbul')
 USE_I18N = True
 USE_TZ = True
+DEFAULT_CHARSET = 'utf-8'
 
 
 STATIC_URL = '/static/'
@@ -140,11 +142,16 @@ LOGOUT_REDIRECT_URL = '/'
 EMAIL_HOST = os.getenv('EMAIL_HOST', '')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', '1') == '1'
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', '0') == '1'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = ''.join(os.getenv('EMAIL_HOST_PASSWORD', '').split())
 EMAIL_BACKEND = os.getenv(
     'EMAIL_BACKEND',
-    'django.core.mail.backends.console.EmailBackend',
+    (
+        'django.core.mail.backends.smtp.EmailBackend'
+        if EMAIL_HOST
+        else 'django.core.mail.backends.console.EmailBackend'
+    ),
 )
 DEFAULT_FROM_EMAIL = os.getenv(
     'DEFAULT_FROM_EMAIL',
@@ -173,6 +180,7 @@ FIREBASE_CREDENTIALS_PATH = os.getenv(
 FIREBASE_CREDENTIALS_JSON = os.getenv('FIREBASE_CREDENTIALS_JSON', '')
 FIREBASE_DATABASE_URL = os.getenv('FIREBASE_DATABASE_URL', '')
 FIREBASE_STORAGE_BUCKET = os.getenv('FIREBASE_STORAGE_BUCKET', '')
+FIREBASE_WEB_API_KEY = os.getenv('FIREBASE_WEB_API_KEY', '')
 FIREBASE_SYNC_ENABLED = os.getenv('FIREBASE_SYNC_ENABLED', 'True') == 'True'
 FIREBASE_AUTH_ENABLED = os.getenv('FIREBASE_AUTH_ENABLED', 'False') == 'True'
 FIREBASE_STORAGE_ENABLED = os.getenv('FIREBASE_STORAGE_ENABLED', 'False') == 'True'
